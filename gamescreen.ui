@@ -23,177 +23,114 @@
    <property name="rightMargin">
     <number>9</number>
    </property>
-   <item row="1" column="3">
-    <widget class="QPushButton" name="p1_2">
+   <item row="1" column="2">
+    <widget class="QPushButton" name="pOne1">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="text">
-      <string/>
+     <property name="font">
+      <font>
+       <strikeout>false</strikeout>
+      </font>
      </property>
-     <property name="icon">
-      <iconset resource="board.qrc">
-       <normaloff>:/img/white50.png</normaloff>:/img/white50.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="autoDefault">
-      <bool>false</bool>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="9">
-    <widget class="QPushButton" name="p2_8">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="board.qrc">
-       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="autoDefault">
-      <bool>false</bool>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="3">
-    <widget class="QPushButton" name="p2_2">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="board.qrc">
-       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="10">
-    <widget class="QPushButton" name="p2_9">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="board.qrc">
-       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="5">
-    <widget class="QPushButton" name="p2_4">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="board.qrc">
-       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="6">
-    <widget class="QPushButton" name="p2_5">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="board.qrc">
-       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1" colspan="10">
-    <widget class="QWidget" name="board" native="true">
-     <property name="minimumSize">
-      <size>
-       <width>400</width>
-       <height>400</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>1000</width>
-       <height>1000</height>
-      </size>
+     <property name="layoutDirection">
+      <enum>Qt::LeftToRight</enum>
      </property>
      <property name="styleSheet">
-      <string notr="true">image: url(:/img/board.png);</string>
+      <string notr="true">background-color: white;</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="board.qrc">
+       <normaloff>:/img/white50.png</normaloff>:/img/white50.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item row="1" column="8">
-    <widget class="QPushButton" name="p1_7">
+   <item row="3" column="4">
+    <widget class="QPushButton" name="pTwo3">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="board.qrc">
+       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="7">
+    <widget class="QPushButton" name="pTwo6">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="board.qrc">
+       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="5">
+    <widget class="QPushButton" name="pTwo4">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="board.qrc">
+       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="6">
+    <widget class="QPushButton" name="pOne5">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -206,6 +143,42 @@
      <property name="icon">
       <iconset resource="board.qrc">
        <normaloff>:/img/white50.png</normaloff>:/img/white50.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1">
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>50</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="3">
+    <widget class="QPushButton" name="pTwo2">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="board.qrc">
+       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -219,121 +192,7 @@
     </widget>
    </item>
    <item row="1" column="5">
-    <widget class="QPushButton" name="p1_4">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="board.qrc">
-       <normaloff>:/img/white50.png</normaloff>:/img/white50.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="10">
-    <widget class="QPushButton" name="p1_9">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="board.qrc">
-       <normaloff>:/img/white50.png</normaloff>:/img/white50.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <spacer name="horizontalSpacer">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="1" column="6">
-    <widget class="QPushButton" name="p1_5">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="board.qrc">
-       <normaloff>:/img/white50.png</normaloff>:/img/white50.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="7">
-    <widget class="QPushButton" name="p2_6">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="board.qrc">
-       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="4">
-    <widget class="QPushButton" name="p1_3">
+    <widget class="QPushButton" name="pOne4">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -385,8 +244,76 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="9">
-    <widget class="QPushButton" name="p1_8">
+   <item row="3" column="6">
+    <widget class="QPushButton" name="pTwo5">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="board.qrc">
+       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="8">
+    <widget class="QPushButton" name="pTwo7">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="board.qrc">
+       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="4">
+    <widget class="QPushButton" name="pOne3">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -411,10 +338,68 @@
      </property>
     </widget>
    </item>
-   <item row="4" column="11">
-    <spacer name="horizontalSpacer_2">
+   <item row="3" column="10">
+    <widget class="QPushButton" name="pTwo9">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="board.qrc">
+       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <widget class="QPushButton" name="pTwo1">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="board.qrc">
+       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="autoDefault">
+      <bool>true</bool>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <spacer name="verticalSpacer_2">
      <property name="orientation">
-      <enum>Qt::Horizontal</enum>
+      <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeType">
       <enum>QSizePolicy::Expanding</enum>
@@ -422,29 +407,47 @@
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>20</height>
+       <height>50</height>
       </size>
      </property>
     </spacer>
    </item>
-   <item row="1" column="2">
-    <widget class="QPushButton" name="p1_1">
+   <item row="3" column="9">
+    <widget class="QPushButton" name="pTwo8">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
      </property>
-     <property name="font">
-      <font>
-       <strikeout>false</strikeout>
-      </font>
+     <property name="text">
+      <string/>
      </property>
-     <property name="layoutDirection">
-      <enum>Qt::LeftToRight</enum>
+     <property name="icon">
+      <iconset resource="board.qrc">
+       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
      </property>
-     <property name="styleSheet">
-      <string notr="true">background-color: white;</string>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="autoDefault">
+      <bool>false</bool>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QPushButton" name="pOne2">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
      </property>
      <property name="text">
       <string/>
@@ -467,133 +470,8 @@
      </property>
     </widget>
    </item>
-   <item row="5" column="1">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>50</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="4" column="8">
-    <widget class="QPushButton" name="p2_7">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="board.qrc">
-       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="2">
-    <widget class="QPushButton" name="p2_1">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="board.qrc">
-       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="autoDefault">
-      <bool>true</bool>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1">
-    <widget class="QLabel" name="player2">
-     <property name="font">
-      <font>
-       <pointsize>18</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Player 2</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1">
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType">
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>50</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="4" column="4">
-    <widget class="QPushButton" name="p2_3">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="icon">
-      <iconset resource="board.qrc">
-       <normaloff>:/img/black50.png</normaloff>:/img/black50.png</iconset>
-     </property>
-     <property name="iconSize">
-      <size>
-       <width>20</width>
-       <height>20</height>
-      </size>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="7">
-    <widget class="QPushButton" name="p1_6">
+   <item row="1" column="8">
+    <widget class="QPushButton" name="pOne7">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
@@ -618,10 +496,1057 @@
      </property>
     </widget>
    </item>
+   <item row="3" column="1">
+    <widget class="QLabel" name="player2">
+     <property name="font">
+      <font>
+       <pointsize>18</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Player 2</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="11">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType">
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="9">
+    <widget class="QPushButton" name="pOne8">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="board.qrc">
+       <normaloff>:/img/white50.png</normaloff>:/img/white50.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="7">
+    <widget class="QPushButton" name="pOne6">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="board.qrc">
+       <normaloff>:/img/white50.png</normaloff>:/img/white50.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="10">
+    <widget class="QPushButton" name="pOne9">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="board.qrc">
+       <normaloff>:/img/white50.png</normaloff>:/img/white50.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>20</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1" colspan="10">
+    <widget class="QWidget" name="board" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>400</width>
+       <height>400</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>1000</width>
+       <height>1000</height>
+      </size>
+     </property>
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="acceptDrops">
+      <bool>false</bool>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">#board{image: url(:/img/board.png);}</string>
+     </property>
+     <widget class="QPushButton" name="space1">
+      <property name="geometry">
+       <rect>
+        <x>11</x>
+        <y>0</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="autoDefault">
+       <bool>true</bool>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space2">
+      <property name="geometry">
+       <rect>
+        <x>203</x>
+        <y>0</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space3">
+      <property name="geometry">
+       <rect>
+        <x>397</x>
+        <y>0</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>20</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space4">
+      <property name="geometry">
+       <rect>
+        <x>65</x>
+        <y>50</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space5">
+      <property name="geometry">
+       <rect>
+        <x>204</x>
+        <y>48</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space6">
+      <property name="geometry">
+       <rect>
+        <x>339</x>
+        <y>53</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space7">
+      <property name="geometry">
+       <rect>
+        <x>135</x>
+        <y>116</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space8">
+      <property name="geometry">
+       <rect>
+        <x>204</x>
+        <y>116</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space9">
+      <property name="geometry">
+       <rect>
+        <x>272</x>
+        <y>116</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space10">
+      <property name="geometry">
+       <rect>
+        <x>11</x>
+        <y>190</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space11">
+      <property name="geometry">
+       <rect>
+        <x>65</x>
+        <y>191</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space12">
+      <property name="geometry">
+       <rect>
+        <x>135</x>
+        <y>190</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space13">
+      <property name="geometry">
+       <rect>
+        <x>273</x>
+        <y>190</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space14">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>190</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space15">
+      <property name="geometry">
+       <rect>
+        <x>397</x>
+        <y>191</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space16">
+      <property name="geometry">
+       <rect>
+        <x>135</x>
+        <y>258</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space17">
+      <property name="geometry">
+       <rect>
+        <x>204</x>
+        <y>259</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space18">
+      <property name="geometry">
+       <rect>
+        <x>273</x>
+        <y>259</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space19">
+      <property name="geometry">
+       <rect>
+        <x>65</x>
+        <y>323</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space20">
+      <property name="geometry">
+       <rect>
+        <x>204</x>
+        <y>328</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space21">
+      <property name="geometry">
+       <rect>
+        <x>341</x>
+        <y>328</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space22">
+      <property name="geometry">
+       <rect>
+        <x>11</x>
+        <y>375</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space23">
+      <property name="geometry">
+       <rect>
+        <x>204</x>
+        <y>378</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+     <widget class="QPushButton" name="space24">
+      <property name="geometry">
+       <rect>
+        <x>397</x>
+        <y>376</y>
+        <width>22</width>
+        <height>22</height>
+       </rect>
+      </property>
+      <property name="acceptDrops">
+       <bool>true</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: white;
+ border-style: solid;
+ border-width:1px;
+ border-radius:10px;
+ border-color: black;
+ max-width:20px;
+ max-height:20px;
+ min-width:20px;
+ min-height:20px;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="autoDefault">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">boardButtons</string>
+      </attribute>
+     </widget>
+    </widget>
+   </item>
   </layout>
  </widget>
  <resources>
   <include location="board.qrc"/>
  </resources>
  <connections/>
+ <buttongroups>
+  <buttongroup name="boardButtons">
+   <property name="exclusive">
+    <bool>false</bool>
+   </property>
+  </buttongroup>
+ </buttongroups>
 </ui>

@@ -18,7 +18,7 @@ public:
 
 private slots:
 
-
+    // first grid space, going left to right
     void on_space1_clicked();
 
     void on_space2_clicked();

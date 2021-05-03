@@ -2,6 +2,7 @@
 #include "ui_gamescreen.h"
 #include <QPushButton>
 #include <QDropEvent>
+using namespace std;
 
 gamescreen::gamescreen(QWidget *parent) :
     QDialog(parent),
@@ -21,11 +22,13 @@ void gamescreen::on_space1_clicked()
 {
     //if turn tracker modulus = 0, place gray piece, if 1, place black piece
     if ((turnTracker % 2) == 0)
-    {// SET A PIECE GRAY
+    {
+    // SET A PIECE GRAY
     ui->space1->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
     }
     else if ((turnTracker % 2) == 1)
-    {// SET A PIECE BLACK
+    {
+    // SET A PIECE BLACK
     ui->space1->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
     }
     else{
@@ -401,4 +404,9 @@ void gamescreen::on_space24_clicked()
         turnTracker = turnTracker + 0;
     }
     turnTracker++;
+}
+
+void detectMill()
+{
+
 }

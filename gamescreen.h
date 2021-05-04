@@ -61,6 +61,12 @@ private slots:
     void remove_piece_click();
 
     // method to place a piece. spaces1-24 go from left to right. top to bottom.
+    /*
+     * on_space_clicked() executes when a click happens
+     * turnTracker indicates who's turn it is. increments when turn is done.
+     *
+     *
+     */
     void on_space1_clicked();
     void on_space2_clicked();
     void on_space3_clicked();

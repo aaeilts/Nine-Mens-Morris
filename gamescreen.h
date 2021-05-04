@@ -2,6 +2,10 @@
 #define GAMESCREEN_H
 
 #include <QDialog>
+
+//ERROR messages:
+#define ERROR_ILLEGAL_REMOVE "This piece cannot be removed."
+
 using namespace std;
 
 namespace Ui {
@@ -49,7 +53,11 @@ public:
 
 private slots:
 
-    void detect_gray_mill();
+    //detects mill for
+    bool detect_mill(int pos);
+
+    //removes pieces when mill occurs
+    void remove_piece_click();
 
     // method to place a piece. spaces1-24 go from left to right. top to bottom.
     void on_space1_clicked();

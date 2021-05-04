@@ -5,6 +5,7 @@
 #include <iostream>
 using namespace std;
 
+
 gamescreen::gamescreen(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::gamescreen)
@@ -19,21 +20,30 @@ gamescreen::~gamescreen()
     delete ui;
 }
 
-
 /*
  *detect_gray_mill will check for mill every time a gray piece is placed.
- *
+ *return TRUE if mill detected
+ *return FALSE if mill detected
  */
-void gamescreen::detect_gray_mill()
+bool gamescreen::detect_mill(int pos)
 {
-    if (
-            (ui->space1->styleSheet()  == "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;") &&
-            (ui->space2->styleSheet()  == "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;") &&
-            (ui->space3->styleSheet()  == "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
-       )
-        cout << "entered condition" << endl;
+    switch (pos)
+    {
+        case 1:
+        // if connnected pieces are the same. then we have a mill
+        if ( (ui->space1->styleSheet() == ui->space2->styleSheet()) &&
+             (ui->space2->styleSheet() == ui->space3->styleSheet()))
+            return true;
+    }
+
+    // no mill detected
+    return false;
 };
 
+void gamescreen::remove_piece_click()
+{
+    //ui->
+}
 
 //if turn tracker modulus = 0, place gray piece, if 1, place black piece
 void gamescreen::on_space1_clicked()
@@ -42,7 +52,7 @@ void gamescreen::on_space1_clicked()
     {
     // SET A PIECE GRAY
     ui->space1->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-    detect_gray_mill();
+    isMill = detect_mill(1);
     }
     else if ((turnTracker % 2) == 1)
     {
@@ -61,6 +71,7 @@ void gamescreen::on_space2_clicked()
     if ((turnTracker % 2) == 0)
     {
     ui->space2->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+    detect_mill(2);
     }
     else if ((turnTracker % 2) == 1)
     {
@@ -77,6 +88,7 @@ void gamescreen::on_space3_clicked()
     if ((turnTracker % 2) == 0)
     {
     ui->space3->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+    detect_mill(3 );
     }
     else if ((turnTracker % 2) == 1)
     {

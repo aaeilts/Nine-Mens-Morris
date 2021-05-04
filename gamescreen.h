@@ -19,8 +19,7 @@ class gamescreen : public QDialog
 public:
     explicit gamescreen(QWidget *parent = nullptr);
     int turnTracker = 0;
-    bool is_mill;
-    bool remove_piece;
+    bool is_mill = false;
 
 
 

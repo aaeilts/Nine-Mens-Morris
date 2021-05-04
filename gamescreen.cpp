@@ -32,11 +32,28 @@ bool gamescreen::detect_mill(int pos)
     {
     // if pieces 1,2,3 are the same. then we have a mill
     case 1:
-            if ( (ui->space1->styleSheet() == ui->space2->styleSheet()) && (ui->space2->styleSheet() == ui->space3->styleSheet()) )
-            {
-                cout << "Player got a mill! Remove an opponents piece" << endl;
-                return true;
-            }
+        // if pieces 1,2,3 are the same. then we have a mill
+        if ( (ui->space1->styleSheet() == ui->space2->styleSheet()) && (ui->space2->styleSheet() == ui->space3->styleSheet()) &&
+             ui->space2->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
+
+        {
+            cout << "Player got a mill! Remove an opponents piece" << endl;
+            return true;
+        }
+        // if pieces 1,10,22 are the same. then we have a mill
+        else if ( (ui->space1->styleSheet() == ui->space10->styleSheet()) && (ui->space10->styleSheet() == ui->space22->styleSheet()) )
+        {
+            cout << "Player got a mill! Remove an opponents piece" << endl;
+            return true;
+        }
+    case 2:
+    // if pieces 2,5,8 are the same. then we have a mill
+    if ( (ui->space2->styleSheet() == ui->space5->styleSheet()) && (ui->space5->styleSheet() == ui->space8->styleSheet()) &&
+         ui->space2->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
+    {
+        cout << "Player got a mill! Remove an opponents piece" << endl;
+        return true;
+    }
 
     }
 
@@ -85,13 +102,13 @@ void gamescreen::on_space2_clicked()
     else if ((turnTracker % 2) == 0)// SET A PIECE GRAY
     {
         ui->space2->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(1); // check for mill
+        is_mill = detect_mill(2); // check for mill
         turnTracker++;
     }
     else if ((turnTracker % 2) == 1)// SET A PIECE BLACK
     {
         ui->space2->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(1); // check for mill
+        is_mill = detect_mill(2); // check for mill
         turnTracker++;
     }
     else

@@ -18,9 +18,10 @@ gamescreen::~gamescreen()
     delete ui;
 }
 
-void gamescreen::on_space1_clicked()
+
+//if turn tracker modulus = 0, place gray piece, if 1, place black piece
+void gamescreen::on_space0_clicked()
 {
-    //if turn tracker modulus = 0, place gray piece, if 1, place black piece
     if ((turnTracker % 2) == 0)
     {
     // SET A PIECE GRAY
@@ -38,7 +39,7 @@ void gamescreen::on_space1_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space2_clicked()
+void gamescreen::on_space1_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -54,7 +55,7 @@ void gamescreen::on_space2_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space3_clicked()
+void gamescreen::on_space2_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -70,7 +71,7 @@ void gamescreen::on_space3_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space4_clicked()
+void gamescreen::on_space3_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -86,7 +87,7 @@ void gamescreen::on_space4_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space5_clicked()
+void gamescreen::on_space4_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -102,7 +103,7 @@ void gamescreen::on_space5_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space6_clicked()
+void gamescreen::on_space5_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -118,7 +119,7 @@ void gamescreen::on_space6_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space7_clicked()
+void gamescreen::on_space6_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -134,7 +135,7 @@ void gamescreen::on_space7_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space8_clicked()
+void gamescreen::on_space7_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -150,7 +151,7 @@ void gamescreen::on_space8_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space9_clicked()
+void gamescreen::on_space8_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -166,7 +167,7 @@ void gamescreen::on_space9_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space10_clicked()
+void gamescreen::on_space9_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -182,7 +183,7 @@ void gamescreen::on_space10_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space11_clicked()
+void gamescreen::on_space10_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -198,7 +199,7 @@ void gamescreen::on_space11_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space12_clicked()
+void gamescreen::on_space11_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -214,7 +215,7 @@ void gamescreen::on_space12_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space13_clicked()
+void gamescreen::on_space12_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -230,7 +231,7 @@ void gamescreen::on_space13_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space14_clicked()
+void gamescreen::on_space13_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -246,7 +247,7 @@ void gamescreen::on_space14_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space15_clicked()
+void gamescreen::on_space14_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -262,7 +263,7 @@ void gamescreen::on_space15_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space16_clicked()
+void gamescreen::on_space15_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -278,7 +279,7 @@ void gamescreen::on_space16_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space17_clicked()
+void gamescreen::on_space16_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -294,7 +295,7 @@ void gamescreen::on_space17_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space18_clicked()
+void gamescreen::on_space17_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -310,7 +311,7 @@ void gamescreen::on_space18_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space19_clicked()
+void gamescreen::on_space18_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -326,7 +327,7 @@ void gamescreen::on_space19_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space20_clicked()
+void gamescreen::on_space19_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -342,7 +343,7 @@ void gamescreen::on_space20_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space21_clicked()
+void gamescreen::on_space20_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -358,7 +359,7 @@ void gamescreen::on_space21_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space22_clicked()
+void gamescreen::on_space21_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -374,7 +375,7 @@ void gamescreen::on_space22_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space23_clicked()
+void gamescreen::on_space22_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -390,7 +391,7 @@ void gamescreen::on_space23_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space24_clicked()
+void gamescreen::on_space23_clicked()
 {
     if ((turnTracker % 2) == 0)
     {

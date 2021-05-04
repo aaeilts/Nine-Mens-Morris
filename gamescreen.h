@@ -16,6 +16,8 @@ public:
     explicit gamescreen(QWidget *parent = nullptr);
     int turnTracker = 0;
 
+
+
     /*!
      *  Model of the mills
      *  possibleMillPositions stores all combinations of three points on the board that can form a mill
@@ -43,12 +45,12 @@ public:
         {{18,19,20}},
         {{21,22,23}} //16
       }};
-
     ~gamescreen();
 
 private slots:
 
-    // method to place a piece. spaces1-24 go from left to right. top to bottom.
+    // method to place a piece. spaces0-23 go from left to right. top to bottom.
+    void on_space0_clicked();
     void on_space1_clicked();
     void on_space2_clicked();
     void on_space3_clicked();
@@ -72,7 +74,6 @@ private slots:
     void on_space21_clicked();
     void on_space22_clicked();
     void on_space23_clicked();
-    void on_space24_clicked();
 
     void detectMill();
 

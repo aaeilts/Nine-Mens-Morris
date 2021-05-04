@@ -2,6 +2,7 @@
 #include "ui_gamescreen.h"
 #include <QPushButton>
 #include <QDropEvent>
+#include <iostream>
 using namespace std;
 
 gamescreen::gamescreen(QWidget *parent) :
@@ -19,13 +20,29 @@ gamescreen::~gamescreen()
 }
 
 
+/*
+ *detect_gray_mill will check for mill every time a gray piece is placed.
+ *
+ */
+void gamescreen::detect_gray_mill()
+{
+    if (
+            (ui->space1->styleSheet()  == "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;") &&
+            (ui->space2->styleSheet()  == "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;") &&
+            (ui->space3->styleSheet()  == "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
+       )
+        cout << "entered condition" << endl;
+};
+
+
 //if turn tracker modulus = 0, place gray piece, if 1, place black piece
-void gamescreen::on_space0_clicked()
+void gamescreen::on_space1_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
     // SET A PIECE GRAY
     ui->space1->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+    detect_gray_mill();
     }
     else if ((turnTracker % 2) == 1)
     {
@@ -39,7 +56,7 @@ void gamescreen::on_space0_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space1_clicked()
+void gamescreen::on_space2_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -55,7 +72,7 @@ void gamescreen::on_space1_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space2_clicked()
+void gamescreen::on_space3_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -71,7 +88,7 @@ void gamescreen::on_space2_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space3_clicked()
+void gamescreen::on_space4_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -87,7 +104,7 @@ void gamescreen::on_space3_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space4_clicked()
+void gamescreen::on_space5_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -103,7 +120,7 @@ void gamescreen::on_space4_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space5_clicked()
+void gamescreen::on_space6_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -119,7 +136,7 @@ void gamescreen::on_space5_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space6_clicked()
+void gamescreen::on_space7_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -135,7 +152,7 @@ void gamescreen::on_space6_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space7_clicked()
+void gamescreen::on_space8_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -151,7 +168,7 @@ void gamescreen::on_space7_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space8_clicked()
+void gamescreen::on_space9_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -167,7 +184,7 @@ void gamescreen::on_space8_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space9_clicked()
+void gamescreen::on_space10_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -183,7 +200,7 @@ void gamescreen::on_space9_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space10_clicked()
+void gamescreen::on_space11_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -199,7 +216,7 @@ void gamescreen::on_space10_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space11_clicked()
+void gamescreen::on_space12_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -215,7 +232,7 @@ void gamescreen::on_space11_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space12_clicked()
+void gamescreen::on_space13_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -231,7 +248,7 @@ void gamescreen::on_space12_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space13_clicked()
+void gamescreen::on_space14_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -247,7 +264,7 @@ void gamescreen::on_space13_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space14_clicked()
+void gamescreen::on_space15_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -263,7 +280,7 @@ void gamescreen::on_space14_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space15_clicked()
+void gamescreen::on_space16_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -279,7 +296,7 @@ void gamescreen::on_space15_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space16_clicked()
+void gamescreen::on_space17_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -295,7 +312,7 @@ void gamescreen::on_space16_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space17_clicked()
+void gamescreen::on_space18_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -311,7 +328,7 @@ void gamescreen::on_space17_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space18_clicked()
+void gamescreen::on_space19_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -327,7 +344,7 @@ void gamescreen::on_space18_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space19_clicked()
+void gamescreen::on_space20_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -343,7 +360,7 @@ void gamescreen::on_space19_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space20_clicked()
+void gamescreen::on_space21_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -359,7 +376,7 @@ void gamescreen::on_space20_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space21_clicked()
+void gamescreen::on_space22_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -375,7 +392,7 @@ void gamescreen::on_space21_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space22_clicked()
+void gamescreen::on_space23_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -391,7 +408,7 @@ void gamescreen::on_space22_clicked()
     turnTracker++;
 }
 
-void gamescreen::on_space23_clicked()
+void gamescreen::on_space24_clicked()
 {
     if ((turnTracker % 2) == 0)
     {
@@ -405,9 +422,4 @@ void gamescreen::on_space23_clicked()
         turnTracker = turnTracker + 0;
     }
     turnTracker++;
-}
-
-void detectMill()
-{
-
 }

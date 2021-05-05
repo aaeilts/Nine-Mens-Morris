@@ -21,46 +21,35 @@ public:
     int turnTracker = 0;
     bool is_mill = false;
 
+// possibleMillPositions =
+//        {{0,1,2}}, // 1
+//        {{0,9,21}},
+//        {{1,4,7}},
+//        {{2,14,23}},
+//        {{3,4,5}},
+//        {{3,10,18}},
+//        {{5,13,20}},
+//        {{6,7,8}},
+//        {{6,11,15}},
+//        {{8,12,17}},
+//        {{9,10,11}},
+//        {{12,13,14}},
+//        {{15,16,17}},
+//        {{16,19,22}},
+//        {{18,19,20}},
+//        {{21,22,23}} //16
 
-
-    /*!
-     *  Model of the mills
-     *  possibleMillPositions stores all combinations of three points on the board that can form a mill
-     *
-     *  This array is used to detect mills during the game
-     *
-     *  For example, the array {0,1,2} in possibleMillPositions means that the points 0, 1 and 2 form a mill
-     */
-
-    array< array<int, 3>, 16> possibleMillPositions = {{
-        //{{0,1,2}}, // 1
-       // {{0,9,21}},
-        //{{1,4,7}},
-       // {{2,14,23}},
-       // {{3,4,5}},
-       // {{3,10,18}},
-        //{{5,13,20}},
-        //{{6,7,8}},
-        //{{6,11,15}},
-        //{{8,12,17}},
-        {{9,10,11}},
-        {{12,13,14}},
-        {{15,16,17}},
-        {{16,19,22}},
-        {{18,19,20}},
-        {{21,22,23}} //16
-      }};
     ~gamescreen();
 
 private slots:
 
-    //detects mill for
+    //detects mill
     bool detect_mill(int pos);
 
-    //removes pieces when mill occurs
-    void remove_piece_click();
+    //output when a mill happens
+    void mill_output();
 
-    // method to place a piece. spaces1-24 go from left to right. top to bottom.
+    // method(s) to place a piece. spaces1-24 go from left to right. top to bottom.
     /*
      * on_space_clicked() executes when a click happens
      * turnTracker indicates who's turn it is. increments when turn is done.

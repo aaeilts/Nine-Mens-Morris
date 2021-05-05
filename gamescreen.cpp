@@ -20,22 +20,29 @@ gamescreen::~gamescreen()
     delete ui;
 }
 
-/*
- *detect_mill will check for mill every time a  piece is placed.
- *return TRUE if mill detected
- *return FALSE if mill NOT detected
- */
+void gamescreen::mill_output(int turnTracker)
+{
+    //if turnTracjer remainder == 0 output for gray team. 1 for black team
+    if ((turnTracker % 2) == 0) {
+        cout << "\nGray Team scored a mill! Remove a Black Team's piece" << endl;
+    }
+    else if ((turnTracker % 2) == 1) {
+        cout << "\nBlack Team scored a mill! Remove a Gray Team's piece" << endl;
+    }
+
+}
+
+// detect_mill will check for mill every time a  piece is placed.
 bool gamescreen::detect_mill(int pos)
 {
     switch (pos)
     {
-    // if pieces 1,2,3 are the same. then we have a mill
     case 1:
         // if pieces 1,2,3 are the same. then we have a mill
         if ( (ui->space1->styleSheet() == ui->space2->styleSheet()) && (ui->space2->styleSheet() == ui->space3->styleSheet()) &&
              ui->space1->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE ONE A Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
 
@@ -43,7 +50,7 @@ bool gamescreen::detect_mill(int pos)
         else if ( (ui->space1->styleSheet() == ui->space10->styleSheet()) && (ui->space10->styleSheet() == ui->space22->styleSheet()) &&
              ui->space1->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE ONE BPlayer got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
 
@@ -52,14 +59,14 @@ bool gamescreen::detect_mill(int pos)
         if ( (ui->space1->styleSheet() == ui->space2->styleSheet()) && (ui->space2->styleSheet() == ui->space3->styleSheet()) &&
              ui->space1->styleSheet() != "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE NUMBER TWO.A: Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         // if pieces 2,5,8 are the same. then we have a mill
         else if ( (ui->space2->styleSheet() == ui->space5->styleSheet()) && (ui->space5->styleSheet() == ui->space8->styleSheet()) &&
              ui->space2->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER TWO.BPlayer got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 3:
@@ -67,7 +74,7 @@ bool gamescreen::detect_mill(int pos)
         if ( (ui->space1->styleSheet() == ui->space2->styleSheet()) && (ui->space2->styleSheet() == ui->space3->styleSheet()) &&
              ui->space1->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE NUMBER THREE.APlayer got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
 
@@ -75,14 +82,14 @@ bool gamescreen::detect_mill(int pos)
         else if ( (ui->space3->styleSheet() == ui->space15->styleSheet()) && (ui->space15->styleSheet() == ui->space24->styleSheet()) &&
              ui->space3->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE NUMBER THREE.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 4:
         if ( (ui->space4->styleSheet() == ui->space5->styleSheet()) && (ui->space5->styleSheet() == ui->space6->styleSheet()) &&
              ui->space4->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE NUMBER FOUR.A Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
 
@@ -90,204 +97,204 @@ bool gamescreen::detect_mill(int pos)
         else if ( (ui->space4->styleSheet() == ui->space11->styleSheet()) && (ui->space11->styleSheet() == ui->space19->styleSheet()) &&
              ui->space4->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE NUMBER FOUR.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 5:
         if ( (ui->space4->styleSheet() == ui->space5->styleSheet()) && (ui->space5->styleSheet() == ui->space6->styleSheet()) &&
              ui->space4->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE NUMBER FIVE.A Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         // if pieces 2,5,8 are the same. then we have a mill
         else if ( (ui->space2->styleSheet() == ui->space5->styleSheet()) && (ui->space5->styleSheet() == ui->space8->styleSheet()) &&
              ui->space2->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER FIVE.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 6:
         if ( (ui->space4->styleSheet() == ui->space5->styleSheet()) && (ui->space5->styleSheet() == ui->space6->styleSheet()) &&
              ui->space4->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE NUMBER SIX.A Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         // if pieces 6,14,21 are the same. then we have a mill
         else if ( (ui->space6->styleSheet() == ui->space14->styleSheet()) && (ui->space14->styleSheet() == ui->space21->styleSheet()) &&
              ui->space6->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER SIX.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 7:
         if ( (ui->space7->styleSheet() == ui->space8->styleSheet()) && (ui->space8->styleSheet() == ui->space9->styleSheet()) &&
              ui->space7->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE NUMBER SEVEN.A Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space7->styleSheet() == ui->space12->styleSheet()) && (ui->space12->styleSheet() == ui->space16->styleSheet()) &&
              ui->space7->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER SEVEN.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 8:
         if ( (ui->space7->styleSheet() == ui->space8->styleSheet()) && (ui->space8->styleSheet() == ui->space9->styleSheet()) &&
              ui->space7->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE NUMBER EIGHT.A Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space2->styleSheet() == ui->space5->styleSheet()) && (ui->space5->styleSheet() == ui->space8->styleSheet()) &&
              ui->space2->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER EIGHT.BPlayer got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 9:
         if ( (ui->space7->styleSheet() == ui->space8->styleSheet()) && (ui->space8->styleSheet() == ui->space9->styleSheet()) &&
              ui->space7->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE NUMBER NINE.A Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space9->styleSheet() == ui->space13->styleSheet()) && (ui->space13->styleSheet() == ui->space18->styleSheet()) &&
              ui->space9->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER NINE.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 10:
         if ( (ui->space1->styleSheet() == ui->space10->styleSheet()) && (ui->space10->styleSheet() == ui->space22->styleSheet()) &&
              ui->space1->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE TEN B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space10->styleSheet() == ui->space11->styleSheet()) && (ui->space11->styleSheet() == ui->space12->styleSheet()) &&
              ui->space10->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER TEN.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 11:
         if ( (ui->space10->styleSheet() == ui->space11->styleSheet()) && (ui->space11->styleSheet() == ui->space12->styleSheet()) &&
              ui->space10->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE ELEVEN.A BPlayer got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space4->styleSheet() == ui->space11->styleSheet()) && (ui->space11->styleSheet() == ui->space19->styleSheet()) &&
              ui->space4->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER ELEVEN.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 12:
         if ( (ui->space10->styleSheet() == ui->space11->styleSheet()) && (ui->space11->styleSheet() == ui->space12->styleSheet()) &&
              ui->space10->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE TWELVE B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space7->styleSheet() == ui->space12->styleSheet()) && (ui->space12->styleSheet() == ui->space16->styleSheet()) &&
              ui->space7->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER TWELVE.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 13:
         if ( (ui->space9->styleSheet() == ui->space13->styleSheet()) && (ui->space13->styleSheet() == ui->space18->styleSheet()) &&
              ui->space9->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER THIRTEEN.A Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space13->styleSheet() == ui->space14->styleSheet()) && (ui->space14->styleSheet() == ui->space15->styleSheet()) &&
              ui->space13->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER THIRTEEN.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 14:
         if ( (ui->space13->styleSheet() == ui->space14->styleSheet()) && (ui->space14->styleSheet() == ui->space15->styleSheet()) &&
              ui->space13->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 14.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space6->styleSheet() == ui->space14->styleSheet()) && (ui->space14->styleSheet() == ui->space21->styleSheet()) &&
              ui->space6->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 14.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 15:
         if ( (ui->space3->styleSheet() == ui->space15->styleSheet()) && (ui->space15->styleSheet() == ui->space24->styleSheet()) &&
              ui->space3->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 15.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space13->styleSheet() == ui->space14->styleSheet()) && (ui->space14->styleSheet() == ui->space15->styleSheet()) &&
              ui->space13->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 15.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 16:
         if ( (ui->space7->styleSheet() == ui->space12->styleSheet()) && (ui->space12->styleSheet() == ui->space16->styleSheet()) &&
              ui->space7->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 16.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space16->styleSheet() == ui->space17->styleSheet()) && (ui->space17->styleSheet() == ui->space18->styleSheet()) &&
              ui->space16->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 16.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 17:
         if ( (ui->space16->styleSheet() == ui->space17->styleSheet()) && (ui->space17->styleSheet() == ui->space18->styleSheet()) &&
              ui->space16->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 17.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space17->styleSheet() == ui->space20->styleSheet()) && (ui->space20->styleSheet() == ui->space23->styleSheet()) &&
              ui->space17->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 17.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 18:
         if ( (ui->space16->styleSheet() == ui->space17->styleSheet()) && (ui->space17->styleSheet() == ui->space18->styleSheet()) &&
              ui->space16->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 18.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space9->styleSheet() == ui->space13->styleSheet()) && (ui->space13->styleSheet() == ui->space18->styleSheet()) &&
              ui->space9->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 18.A Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 19:
         if ( (ui->space4->styleSheet() == ui->space11->styleSheet()) && (ui->space11->styleSheet() == ui->space19->styleSheet()) &&
              ui->space10->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 19.a Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space19->styleSheet() == ui->space20->styleSheet()) && (ui->space20->styleSheet() == ui->space21->styleSheet()) &&
              ui->space19->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 18.A Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
 
@@ -295,13 +302,13 @@ bool gamescreen::detect_mill(int pos)
         if ( (ui->space19->styleSheet() == ui->space20->styleSheet()) && (ui->space20->styleSheet() == ui->space21->styleSheet()) &&
              ui->space19->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 20.A Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space17->styleSheet() == ui->space20->styleSheet()) && (ui->space20->styleSheet() == ui->space23->styleSheet()) &&
              ui->space17->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 20.A Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
 
@@ -310,13 +317,13 @@ bool gamescreen::detect_mill(int pos)
         if ( (ui->space19->styleSheet() == ui->space20->styleSheet()) && (ui->space20->styleSheet() == ui->space21->styleSheet()) &&
              ui->space19->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 21.A Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space6->styleSheet() == ui->space14->styleSheet()) && (ui->space14->styleSheet() == ui->space21->styleSheet()) &&
              ui->space6->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 21.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 22:
@@ -324,13 +331,13 @@ bool gamescreen::detect_mill(int pos)
         if ( (ui->space1->styleSheet() == ui->space10->styleSheet()) && (ui->space10->styleSheet() == ui->space22->styleSheet()) &&
              ui->space1->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\n CASE 22a Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space22->styleSheet() == ui->space23->styleSheet()) && (ui->space23->styleSheet() == ui->space24->styleSheet()) &&
              ui->space22->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 22.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
 
@@ -338,26 +345,26 @@ bool gamescreen::detect_mill(int pos)
         if ( (ui->space22->styleSheet() == ui->space23->styleSheet()) && (ui->space23->styleSheet() == ui->space24->styleSheet()) &&
              ui->space22->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 23a Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space17->styleSheet() == ui->space20->styleSheet()) && (ui->space20->styleSheet() == ui->space23->styleSheet()) &&
              ui->space17->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 23.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     case 24:
         if ( (ui->space3->styleSheet() == ui->space15->styleSheet()) && (ui->space15->styleSheet() == ui->space24->styleSheet()) &&
              ui->space3->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 24.a Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space22->styleSheet() == ui->space23->styleSheet()) && (ui->space23->styleSheet() == ui->space24->styleSheet()) &&
              ui->space22->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "\nCASE NUMBER 24.B Player got a mill! Remove an opponents piece" << endl;
+            mill_output(turnTracker);
             return true;
         }
     }
@@ -366,15 +373,9 @@ bool gamescreen::detect_mill(int pos)
     return false;
 };
 
-void gamescreen::mill_output()
-{
-
-}
-
-
 void gamescreen::on_space1_clicked()
 {
-    if(is_mill == true)
+    if(is_mill == true) // each click will first check if mill is present..
     {
         ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;

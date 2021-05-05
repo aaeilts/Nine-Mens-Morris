@@ -18,6 +18,12 @@ class gamescreen : public QDialog
 
 public:
     explicit gamescreen(QWidget *parent = nullptr);
+
+    /*
+     *turnTracker:      keeps track of who's turn it is
+     *is_mill:          signals the program if there is a mill on board with T or F value.
+     *
+     */
     int turnTracker = 0;
     bool is_mill = false;
 
@@ -43,17 +49,21 @@ public:
 
 private slots:
 
-    //detects mill
+    /* chekcs for mill
+     *
+     * parameter: pos -> where a piece was just placed.
+     *
+     * Returns: TRUE if mill detected
+     *          FALSE if mill NOT detected
+     */
     bool detect_mill(int pos);
 
     //output when a mill happens
-    void mill_output();
+    void mill_output(int turnTracker);
 
-    // method(s) to place a piece. spaces1-24 go from left to right. top to bottom.
     /*
+     * method(s) to place a piece. spaces1-24 go from left to right. top to bottom.
      * on_space_clicked() executes when a click happens
-     * turnTracker indicates who's turn it is. increments when turn is done.
-     *
      *
      */
     void on_space1_clicked();

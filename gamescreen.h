@@ -27,24 +27,6 @@ public:
     int turnTracker = 0;
     bool is_mill = false;
 
-// possibleMillPositions =
-//        {{0,1,2}}, // 1
-//        {{0,9,21}},
-//        {{1,4,7}},
-//        {{2,14,23}},
-//        {{3,4,5}},
-//        {{3,10,18}},
-//        {{5,13,20}},
-//        {{6,7,8}},
-//        {{6,11,15}},
-//        {{8,12,17}},
-//        {{9,10,11}},
-//        {{12,13,14}},
-//        {{15,16,17}},
-//        {{16,19,22}},
-//        {{18,19,20}},
-//        {{21,22,23}} //16
-
     ~gamescreen();
 
 private slots:
@@ -60,6 +42,10 @@ private slots:
 
     //output when a mill happens
     void mill_output(int turnTracker);
+
+    //checks if its OK to remove a specific piece
+    //FIXME: FIGURE OUT HOW TO IMPLEMENT THIS METHOD
+    bool remove_check(QPushButton piece);
 
     /*
      * method(s) to place a piece. spaces1-24 go from left to right. top to bottom.

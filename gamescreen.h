@@ -22,10 +22,11 @@ public:
     /*
      *turnTracker:      keeps track of who's turn it is
      *is_mill:          signals the program if there is a mill on board with T or F value.
-     *
+     *removable         signals the program if piece can be removed or not.
      */
     int turnTracker = 0;
     bool is_mill = false;
+    bool removabe = false;
 
     ~gamescreen();
 
@@ -45,7 +46,7 @@ private slots:
 
     //checks if its OK to remove a specific piece
     //FIXME: FIGURE OUT HOW TO IMPLEMENT THIS METHOD
-    bool remove_check(QPushButton piece);
+    bool remove_check(QPushButton* position);
 
     /*
      * method(s) to place a piece. spaces1-24 go from left to right. top to bottom.

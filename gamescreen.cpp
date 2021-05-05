@@ -32,6 +32,18 @@ void gamescreen::mill_output(int turnTracker)
 
 }
 
+bool remove_check(QPushButton* position)
+{
+    while(true)
+    {
+        if(position->styleSheet() != ("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;"))
+            cout << "test completed" << endl;
+    }
+
+
+    return false;
+}
+
 // detect_mill will check for mill every time a  piece is placed.
 bool gamescreen::detect_mill(int pos)
 {
@@ -377,7 +389,8 @@ void gamescreen::on_space1_clicked()
 {
     if(is_mill == true) // each click will first check if mill is present..
     {
-        ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_check(ui->space1);
+        //ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
     else if ((turnTracker % 2) == 0)//will SET A PIECE GRAY

@@ -2,6 +2,7 @@
 #define GAMESCREEN_H
 
 #include <QDialog>
+#include <QPushButton>
 
 //ERROR messages:
 #define ERROR_ILLEGAL_REMOVE "This piece cannot be removed."

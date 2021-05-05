@@ -388,8 +388,8 @@ bool gamescreen::detect_mill(int pos)
 void gamescreen::on_space1_clicked()
 {
     if(is_mill == true) // each click will first check if mill is present..
-    {
-        remove_check(ui->space1);
+    {//FIXME: IMPLEMENT remove_check() method
+        removabe = remove_check(ui->space1);
         //ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }

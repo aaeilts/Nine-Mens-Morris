@@ -63,6 +63,11 @@ public:
      */
     void changeturn(bool isMill);
 
+    /*
+     *movePieces
+     *
+     *parameter:    place ->
+     */
     void movePieces(int place);
 
     void phaseTwo(int place);
@@ -86,6 +91,9 @@ public:
 
     /*
      * checks if its OK to remove a specific piece
+     *
+     * parameter:   turnTracker-> use in switch/case to see who gets to remove
+     *              pos-> object that points to which piece we want to remove (based on next click)
      */
 
     void remove_piece(int turnTracker, QPushButton* pos);

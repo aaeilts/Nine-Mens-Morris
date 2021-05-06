@@ -1082,6 +1082,15 @@ void gamescreen::on_space1_clicked()
             cout << "Entering phase 2" << endl;
             movePieces(1);
         }
+        if( (p0_num_pieces == 0) && (p0_pieces_on_board == 3) )
+        {
+
+        }
+        if( (p2_num_pieces == 0) && ( p1_pieces_on_board == 3))
+        {
+
+        }
+
 
     }
     else

@@ -21,6 +21,7 @@ gamescreen::~gamescreen()
     delete ui;
 }
 
+
 //gameend function
 void gamescreen::endgame(int p0_num_pieces, int p2_num_pieces, int p0_pieces_on_board, int p1_pieces_on_board){
     //if all pieces have been places
@@ -47,6 +48,12 @@ void gamescreen::endgame(int p0_num_pieces, int p2_num_pieces, int p0_pieces_on_
             QApplication::quit();
         }
         */
+
+void gamescreen::WhiteToBlue(QPushButton* button1){
+    if (button1->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
+    {
+        button1->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        changed = true;
     }
 }
 
@@ -89,6 +96,50 @@ void gamescreen::movePieces(int place){
     else{
         ChangeAdjacentEmpty(place);
     }
+
+}
+
+void gamescreen::CheckPhaseTwo(QPushButton* button){
+    if (button->styleSheet() == "background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
+    {
+        if (turnTracker == 0){
+            button->setStyleSheet("background-color: gray;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+            tempButtonHolder.removeOne(button);
+        }
+        else if (turnTracker == 1){
+            button->setStyleSheet("background-color: black;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+            tempButtonHolder.removeOne(button);
+        }
+        //DO NOT change turn here, taking move back
+    }
+    else if (button->styleSheet() == "background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
+    {
+        if (turnTracker == 0){
+            button->setStyleSheet("background-color: gray;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+            tempButtonHolder.removeOne(button);
+        }
+        else if (turnTracker == 1){
+            button->setStyleSheet("background-color: black;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+            tempButtonHolder.removeOne(button);
+        }
+        changeturn(true);
+    }
+    for (int i = 0; i < tempButtonHolder.size(); i++)
+    {
+        tempButtonHolder[i]->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+
+    }
+}
+
+
+void gamescreen::IfChanged(QPushButton* button2){
+    if (changed)
+    {
+        button2->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        secondPhase = true;
+        move_from.push_back(button2);
+        tempButtonHolder.append(button2);
+    }
 }
 
 void gamescreen::phaseTwo(int place){
@@ -114,537 +165,142 @@ void gamescreen::phaseTwo(int place){
 //void gamescreen::moveAPiece(int index){}
 
 void gamescreen::ChangeAdjacentEmpty(int switchCase){
-    bool changed = false;
     switch(switchCase){
     case 1:
-        if (ui->space2->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space2->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            //ui->space2->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space2);
-        }
-        if (ui->space10->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space10->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space10);
-        }
-        if (changed) //If neither of cases above change theres no free space
-        {
-            ui->space1->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            secondPhase = true;
-        }
+        WhiteToBlue(ui->space2);
+        WhiteToBlue(ui->space10);
+        IfChanged(ui->space1);
         break;
     case 2:
-        if (ui->space1->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space1->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space1);
-        }
-        if (ui->space3->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space3->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space3);
-        }
-        if (ui->space5->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space5->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space5);
-        }
-        if (changed)
-        {
-            ui->space1->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space1);
+        WhiteToBlue(ui->space3);
+        WhiteToBlue(ui->space5);
+        IfChanged(ui->space2);
         break;
     case 3:
-        if (ui->space2->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space2->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space2);
-        }
-        if (ui->space15->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space15->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space15);
-        }
-        if (changed)
-        {
-            ui->space3->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space2);
+        WhiteToBlue(ui->space15);
+        IfChanged(ui->space3);
         break;
     case 4:
-        if (ui->space5->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space5->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space5);
-        }
-        if (ui->space11->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space11->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space11);
-        }
-        if (changed)
-        {
-            ui->space4->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space5);
+        WhiteToBlue(ui->space11);
+        IfChanged(ui->space4);
         break;
     case 5:
-        if (ui->space2->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space2->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space2);
-        }
-        if (ui->space4->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space4->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space4);
-        }
-        if (ui->space6->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space6->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space6);
-        }
-        if (ui->space8->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space8->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space8);
-        }
-        if (changed)
-        {
-            ui->space5->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space2);
+        WhiteToBlue(ui->space4);
+        WhiteToBlue(ui->space6);
+        WhiteToBlue(ui->space8);
+        IfChanged(ui->space5);
         break;
     case 6:
-        if (ui->space5->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space5->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space5);
-        }
-        if (ui->space14->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space14->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space14);
-        }
-        if (changed)
-        {
-            ui->space6->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space5);
+        WhiteToBlue(ui->space14);
+        IfChanged(ui->space6);
         break;
     case 7:
-        if (ui->space8->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space8->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space8);
-        }
-        if (ui->space12->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space12->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space12);
-        }
-        if (changed)
-        {
-            ui->space7->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space8);
+        WhiteToBlue(ui->space12);
+        IfChanged(ui->space7);
         break;
     case 8:
-        if (ui->space5->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space5->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space5);
-        }
-        if (ui->space7->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space7->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space7);
-        }
-        if (ui->space9->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space9->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space9);
-        }
-        if (changed)
-        {
-            ui->space8->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space5);
+        WhiteToBlue(ui->space7);
+        WhiteToBlue(ui->space9);
+        IfChanged(ui->space8);
         break;
     case 9:
-        if (ui->space8->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space8->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space8);
-        }
-        if (ui->space13->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space13->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space13);
-        }
-        if (changed)
-        {
-            ui->space9->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space8);
+        WhiteToBlue(ui->space13);
+        IfChanged(ui->space9);
         break;
     case 10:
-        if (ui->space1->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space1->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space1);
-        }
-        if (ui->space11->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space11->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space11);
-        }
-        if (ui->space22->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space22->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space22);
-        }
-        if (changed)
-        {
-            ui->space10->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space1);
+        WhiteToBlue(ui->space11);
+        WhiteToBlue(ui->space22);
+        IfChanged(ui->space10);
         break;
     case 11:
-        if (ui->space4->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space4->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space4);
-        }
-        if (ui->space10->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space10->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space10);
-        }
-        if (ui->space12->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space12->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space12);
-        }
-        if (ui->space19->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space19->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space19);
-        }
-        if (changed)
-        {
-            ui->space11->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space4);
+        WhiteToBlue(ui->space10);
+        WhiteToBlue(ui->space12);
+        WhiteToBlue(ui->space19);
+        IfChanged(ui->space11);
         break;
     case 12:
-        if (ui->space7->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space7->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space7);
-        }
-        if (ui->space11->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space11->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space11);
-        }
-        if (ui->space16->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space16->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space16);
-        }
-        if (changed)
-        {
-            ui->space12->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space7);
+        WhiteToBlue(ui->space11);
+        WhiteToBlue(ui->space16);
+        IfChanged(ui->space12);
         break;
     case 13:
-        if (ui->space9->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space9->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space9);
-        }
-        if (ui->space14->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space14->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space14);
-        }
-        if (ui->space18->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space18->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space18);
-        }
-        if (changed)
-        {
-            ui->space13->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space9);
+        WhiteToBlue(ui->space14);
+        WhiteToBlue(ui->space18);
+        IfChanged(ui->space13);
         break;
     case 14:
-        if (ui->space6->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space6->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space6);
-        }
-        if (ui->space13->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space13->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space13);
-        }
-        if (ui->space15->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space15->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space15);
-        }
-        if (ui->space21->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space21->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space21);
-        }
-        if (changed)
-        {
-            ui->space14->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space6);
+        WhiteToBlue(ui->space13);
+        WhiteToBlue(ui->space15);
+        WhiteToBlue(ui->space21);
+        IfChanged(ui->space14);
         break;
     case 15:
-        if (ui->space3->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space3->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space3);
-        }
-        if (ui->space14->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space14->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space14);
-        }
-        if (ui->space24->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space24->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space24);
-        }
-        if (changed)
-        {
-            ui->space15->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space3);
+        WhiteToBlue(ui->space14);
+        WhiteToBlue(ui->space24);
+        IfChanged(ui->space15);
         break;
     case 16:
-        if (ui->space12->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space12->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space12);
-        }
-        if (ui->space17->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space17->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space17);
-        }
-        if (changed)
-        {
-            ui->space16->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space12);
+        WhiteToBlue(ui->space17);
+        IfChanged(ui->space16);
         break;
     case 17:
-        if (ui->space16->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space16->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space16);
-        }
-        if (ui->space18->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space18->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space18);
-        }
-        if (ui->space20->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space20->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space20);
-        }
-        if (changed)
-        {
-            ui->space17->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space16);
+        WhiteToBlue(ui->space18);
+        WhiteToBlue(ui->space20);
+        IfChanged(ui->space17);
         break;
     case 18:
-        if (ui->space13->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space13->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space13);
-        }
-        if (ui->space17->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space17->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space17);
-        }
-        if (changed)
-        {
-            ui->space18->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space13);
+        WhiteToBlue(ui->space17);
+        IfChanged(ui->space18);
         break;
     case 19:
-        if (ui->space11->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space11->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space11);
-        }
-        if (ui->space20->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space20->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space20);
-        }
-        if (changed)
-        {
-            ui->space19->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space11);
+        WhiteToBlue(ui->space20);
+        IfChanged(ui->space19);
         break;
     case 20:
-        if (ui->space17->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space17->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space17);
-        }
-        if (ui->space19->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space19->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space19);
-        }
-        if (ui->space21->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space21->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space21);
-        }
-        if (ui->space23->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space23->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space23);
-        }
-        if (changed)
-        {
-            ui->space20->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space17);
+        WhiteToBlue(ui->space19);
+        WhiteToBlue(ui->space21);
+        WhiteToBlue(ui->space23);
+        IfChanged(ui->space20);
         break;
     case 21:
-        if (ui->space14->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space14->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space14);
-        }
-        if (ui->space20->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space20->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space20);
-        }
-        if (changed)
-        {
-            ui->space21->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space14);
+        WhiteToBlue(ui->space20);
+        IfChanged(ui->space21);
         break;
     case 22:
-        if (ui->space10->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space10->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space10);
-        }
-        if (ui->space23->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space23->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space23);
-        }
-        if (changed)
-        {
-            ui->space22->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space10);
+        WhiteToBlue(ui->space23);
+        IfChanged(ui->space22);
         break;
     case 23:
-        if (ui->space20->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space20->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space20);
-        }
-        if (ui->space22->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space22->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space22);
-        }
-        if (ui->space24->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space24->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space24);
-        }
-        if (changed)
-        {
-            ui->space23->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space20);
+        WhiteToBlue(ui->space22);
+        WhiteToBlue(ui->space24);
+        IfChanged(ui->space23);
         break;
     case 24:
-        if (ui->space15->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space15->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space15);
-        }
-        if (ui->space23->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space23->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space23);
-        }
-        if (changed)
-        {
-            ui->space24->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space15);
+        WhiteToBlue(ui->space23);
+        IfChanged(ui->space24);
         break;
     }
 }
@@ -671,6 +327,10 @@ void gamescreen::changeturn(bool isMill)
        ui->turn_label->setText("TurnTracker Error");
    }
 
+   cout << "turnTracker = " << turnTracker << endl;
+   cout << "gray pieces left = " << p0_num_pieces << endl;
+   cout << "black pieces left = " << p1_num_pieces << endl;
+
 }
 
 //mill_output outputs specific mill message for whichever team got it.
@@ -688,12 +348,12 @@ void gamescreen::mill_output(int turnTracker)
 
 //checks if desired piece to be removed is applicable... then removes piece
 void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
-{
+{//FIXME:
     switch (turnTracker)
     {
         // if gray gets mill
         case 0 :
-            //if position = black piece. 'remove' piece
+            //if position = black piece, then remove piece
             if(pos->styleSheet() == "background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
             {
                 pos->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
@@ -726,10 +386,17 @@ void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
     };
 }
 
+void gamescreen::fly_phase(QPushButton *pos, int turnTracker)
+{
+    cout << "***FLY PHASE***" << endl;
+
+
+
+}
+
 // detect_mill will check for mill every time a  piece is placed.
 bool gamescreen::detect_mill(int pos)
 {
-
     switch (pos)
     {
     case 1:
@@ -865,12 +532,13 @@ bool gamescreen::detect_mill(int pos)
     case 10:
         if ( (ui->space1->styleSheet() == ui->space10->styleSheet()) && (ui->space10->styleSheet() == ui->space22->styleSheet()) &&
              ui->space1->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
-        {
+        {//FIXME: sometimes a mill happens when its not even possible
+
             mill_output(turnTracker);
             return true;
         }
-        else if ( (ui->space10->styleSheet() == ui->space11->styleSheet()) && (ui->space11->styleSheet() == ui->space12->styleSheet()) &&
-             ui->space10->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
+        else if ( (ui->space12->styleSheet() == ui->space11->styleSheet()) && (ui->space11->styleSheet() == ui->space10->styleSheet()) &&
+             ui->space12->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
             mill_output(turnTracker);
             return true;
@@ -981,7 +649,7 @@ bool gamescreen::detect_mill(int pos)
         }
     case 19:
         if ( (ui->space4->styleSheet() == ui->space11->styleSheet()) && (ui->space11->styleSheet() == ui->space19->styleSheet()) &&
-             ui->space10->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
+             ui->space4->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
             mill_output(turnTracker);
             return true;
@@ -1071,9 +739,10 @@ bool gamescreen::detect_mill(int pos)
 void gamescreen::on_space1_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space1);
 
     if(is_mill == true) // each click will first check if mill is present..
-    {//FIXME: IMPLEMENT remove_check() method
+    {
         remove_piece(turnTracker, ui->space1);
         changeturn(is_mill);
     }
@@ -1094,25 +763,34 @@ void gamescreen::on_space1_clicked()
             ui->message->setText("move a piece");
             movePieces(1);
         }
+        // if no more pieces can be placed AND there are ONLY 3 pieces AND it's gray turn.
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space1, turnTracker);
+        }
     }
     else if (turnTracker == 1)//Black's Turn
     {
 
-        if ((p2_num_pieces > 0) && (ui->space1->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //will set a piece black if have pieces left to place
+        if ((p1_num_pieces > 0) && (ui->space1->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //will set a piece black if have pieces left to place
         {
             ui->space1->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(1); // check for mill
             changeturn(is_mill);
+
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             ui->message->setText("move a piece");
             movePieces(1);
         }
-
+        if( (p1_num_pieces == 0) && ( p1_pieces_on_board == 3)&& (is_mill == false) )
+        {
+            fly_phase(ui->space1, turnTracker);
+        }
     }
     else
     {
@@ -1123,6 +801,7 @@ void gamescreen::on_space1_clicked()
 void gamescreen::on_space2_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space2);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space2);
@@ -1145,16 +824,21 @@ void gamescreen::on_space2_clicked()
             ui->message->setText("move a piece");
             movePieces(2);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space2, turnTracker);
+        }
+
     }
     else if (turnTracker == 1) //Black's Turn
     {
 
-        if ((p2_num_pieces > 0) && (ui->space2->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if pieces left
+        if ((p1_num_pieces > 0) && (ui->space2->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if pieces left
         {
             ui->space2->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(2);
             changeturn(is_mill);
         }
@@ -1162,6 +846,10 @@ void gamescreen::on_space2_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(2);
+        }
+        if( (p1_num_pieces == 0) && ( p1_pieces_on_board == 3)&& (is_mill == false) )
+        {
+            fly_phase(ui->space2, turnTracker);
         }
     }
     else
@@ -1173,6 +861,7 @@ void gamescreen::on_space2_clicked()
 void gamescreen::on_space3_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space3);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space3);
@@ -1195,16 +884,20 @@ void gamescreen::on_space3_clicked()
             ui->message->setText("move a piece");
             movePieces(3);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space3, turnTracker);
+        }
     }
     else if (turnTracker == 1) // Black's turn
     {
 
-        if ((p2_num_pieces > 0) && (ui->space3->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if pieces left
+        if ((p1_num_pieces > 0) && (ui->space3->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if pieces left
         {
             ui->space3->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(3);
             changeturn(is_mill);
         }
@@ -1212,6 +905,11 @@ void gamescreen::on_space3_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(3);
+        }
+        if( (p1_num_pieces == 0) && ( p1_pieces_on_board == 3)&& (is_mill == false) )
+        {
+            cout << "entering black fly_phase.....turnTracker = " << turnTracker << endl;
+            fly_phase(ui->space1, turnTracker);
         }
 
     }
@@ -1224,6 +922,7 @@ void gamescreen::on_space3_clicked()
 void gamescreen::on_space4_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space4);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space4);
@@ -1245,15 +944,19 @@ void gamescreen::on_space4_clicked()
             ui->message->setText("move a piece");
             movePieces(4);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space4, turnTracker);
+        }
     }
     else if (turnTracker == 1) // Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space4->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place piece if pieces available
+        if ((p1_num_pieces > 0) && (ui->space4->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place piece if pieces available
         {
             ui->space4->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
              p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(4);
             changeturn(is_mill);
         }
@@ -1261,6 +964,11 @@ void gamescreen::on_space4_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(4);
+        }
+        if( (p1_num_pieces == 0) && ( p1_pieces_on_board == 3)&& (is_mill == false) )
+        {
+            cout << "entering black fly_phase.....turnTracker = " << turnTracker << endl;
+            fly_phase(ui->space4, turnTracker);
         }
     }
     else
@@ -1272,6 +980,7 @@ void gamescreen::on_space4_clicked()
 void gamescreen::on_space5_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space5);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space5);
@@ -1293,15 +1002,19 @@ void gamescreen::on_space5_clicked()
             ui->message->setText("move a piece");
             movePieces(5);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space5, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space5->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if pieces available
+        if ((p1_num_pieces > 0) && (ui->space5->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if pieces available
         {
             ui->space5->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(5);
             changeturn(is_mill);
         }
@@ -1309,6 +1022,10 @@ void gamescreen::on_space5_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(5);
+        }
+        if( (p1_num_pieces == 0) && ( p1_pieces_on_board == 3)&& (is_mill == false) )
+        {
+            fly_phase(ui->space5, turnTracker);
         }
     }
     else
@@ -1320,6 +1037,7 @@ void gamescreen::on_space5_clicked()
 void gamescreen::on_space6_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space6);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space6);
@@ -1341,15 +1059,19 @@ void gamescreen::on_space6_clicked()
             ui->message->setText("move a piece");
             movePieces(6);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space6, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space6->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space6->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space6->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(6);
             changeturn(is_mill);
         }
@@ -1357,6 +1079,10 @@ void gamescreen::on_space6_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(6);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space6, turnTracker);
         }
     }
     else
@@ -1368,6 +1094,7 @@ void gamescreen::on_space6_clicked()
 void gamescreen::on_space7_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space7);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space7);
@@ -1389,15 +1116,19 @@ void gamescreen::on_space7_clicked()
             ui->message->setText("move a piece");
             movePieces(7);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space7, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's Turn
     {
-        if ((p2_num_pieces > 0) && (ui->space7->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space7->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space7->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(7);
             changeturn(is_mill);
         }
@@ -1405,6 +1136,10 @@ void gamescreen::on_space7_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(7);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space7, turnTracker);
         }
     }
     else
@@ -1416,6 +1151,7 @@ void gamescreen::on_space7_clicked()
 void gamescreen::on_space8_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space8);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space8);
@@ -1437,15 +1173,19 @@ void gamescreen::on_space8_clicked()
             ui->message->setText("move a piece");
             movePieces(8);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space8, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Blacks turn
     {
-        if ((p2_num_pieces > 0) && (ui->space8->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space8->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space8->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(8);
             changeturn(is_mill);
         }
@@ -1453,6 +1193,10 @@ void gamescreen::on_space8_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(8);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space8, turnTracker);
         }
     }
     else
@@ -1464,6 +1208,7 @@ void gamescreen::on_space8_clicked()
 void gamescreen::on_space9_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space9);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space9);
@@ -1485,15 +1230,19 @@ void gamescreen::on_space9_clicked()
             ui->message->setText("move a piece");
             movePieces(9);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space9, turnTracker);
+        }
     }
     else if (turnTracker == 1) // Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space9->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space9->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space9->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(9);
             changeturn(is_mill);
         }
@@ -1501,6 +1250,10 @@ void gamescreen::on_space9_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(9);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space8, turnTracker);
         }
     }
     else
@@ -1512,6 +1265,7 @@ void gamescreen::on_space9_clicked()
 void gamescreen::on_space10_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space10);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space10);
@@ -1533,15 +1287,19 @@ void gamescreen::on_space10_clicked()
             ui->message->setText("move a piece");
             movePieces(10);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space10, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space10->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place a black piece
+        if ((p1_num_pieces > 0) && (ui->space10->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place a black piece
         {
             ui->space10->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(10);
             changeturn(is_mill);
         }
@@ -1549,6 +1307,10 @@ void gamescreen::on_space10_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(10);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space10, turnTracker);
         }
     }
     else
@@ -1560,6 +1322,7 @@ void gamescreen::on_space10_clicked()
 void gamescreen::on_space11_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space11);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space11);
@@ -1581,15 +1344,19 @@ void gamescreen::on_space11_clicked()
             ui->message->setText("move a piece");
             movePieces(11);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space11, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space11->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space11->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space11->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(11);
             changeturn(is_mill);
         }
@@ -1597,6 +1364,10 @@ void gamescreen::on_space11_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(11);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space11, turnTracker);
         }
     }
     else
@@ -1608,6 +1379,7 @@ void gamescreen::on_space11_clicked()
 void gamescreen::on_space12_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space12);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space12);
@@ -1629,15 +1401,19 @@ void gamescreen::on_space12_clicked()
             ui->message->setText("move a piece");
             movePieces(12);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space12, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space12->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space12->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space12->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(12);
             changeturn(is_mill);
         }
@@ -1645,6 +1421,10 @@ void gamescreen::on_space12_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(12);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space12, turnTracker);
         }
     }
     else
@@ -1656,6 +1436,7 @@ void gamescreen::on_space12_clicked()
 void gamescreen::on_space13_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space13);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space13);
@@ -1677,15 +1458,19 @@ void gamescreen::on_space13_clicked()
             ui->message->setText("move a piece");
             movePieces(13);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space13, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space13->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space13->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space13->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(13);
             changeturn(is_mill);
         }
@@ -1693,6 +1478,10 @@ void gamescreen::on_space13_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(13);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space13, turnTracker);
         }
     }
     else
@@ -1704,6 +1493,7 @@ void gamescreen::on_space13_clicked()
 void gamescreen::on_space14_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space14);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space14);
@@ -1725,15 +1515,19 @@ void gamescreen::on_space14_clicked()
             ui->message->setText("move a piece");
             movePieces(14);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space14, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space14->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space14->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space14->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(14);
             changeturn(is_mill);
         }
@@ -1741,6 +1535,10 @@ void gamescreen::on_space14_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(14);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space14, turnTracker);
         }
     }
     else
@@ -1752,6 +1550,7 @@ void gamescreen::on_space14_clicked()
 void gamescreen::on_space15_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space15);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space15);
@@ -1773,15 +1572,19 @@ void gamescreen::on_space15_clicked()
             ui->message->setText("move a piece");
             movePieces(15);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space15, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space15->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space15->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space15->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(15);
             changeturn(is_mill);
         }
@@ -1789,6 +1592,10 @@ void gamescreen::on_space15_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(15);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space15, turnTracker);
         }
     }
     else
@@ -1800,6 +1607,7 @@ void gamescreen::on_space15_clicked()
 void gamescreen::on_space16_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space16);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space16);
@@ -1821,15 +1629,19 @@ void gamescreen::on_space16_clicked()
             ui->message->setText("move a piece");
             movePieces(16);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space16, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space16->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space16->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space16->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(16);
             changeturn(is_mill);
         }
@@ -1837,6 +1649,10 @@ void gamescreen::on_space16_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(16);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space16, turnTracker);
         }
     }
     else
@@ -1848,6 +1664,7 @@ void gamescreen::on_space16_clicked()
 void gamescreen::on_space17_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space17);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space17);
@@ -1869,15 +1686,19 @@ void gamescreen::on_space17_clicked()
             ui->message->setText("move a piece");
             movePieces(17);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space17, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space17->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space17->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space17->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(17);
             changeturn(is_mill);
         }
@@ -1885,6 +1706,10 @@ void gamescreen::on_space17_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(17);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space17, turnTracker);
         }
     }
     else
@@ -1896,6 +1721,7 @@ void gamescreen::on_space17_clicked()
 void gamescreen::on_space18_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space18);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space18);
@@ -1917,15 +1743,19 @@ void gamescreen::on_space18_clicked()
             ui->message->setText("move a piece");
             movePieces(18);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space18, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space18->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space18->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space18->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(18);
             changeturn(is_mill);
         }
@@ -1933,6 +1763,10 @@ void gamescreen::on_space18_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(18);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space18, turnTracker);
         }
     }
     else
@@ -1944,6 +1778,7 @@ void gamescreen::on_space18_clicked()
 void gamescreen::on_space19_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space19);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space19);
@@ -1965,15 +1800,19 @@ void gamescreen::on_space19_clicked()
             ui->message->setText("move a piece");
             movePieces(19);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space19, turnTracker);
+        }
     }
     else if (turnTracker == 1) // Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space19->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space19->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space19->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(19);
             changeturn(is_mill);
         }
@@ -1981,6 +1820,10 @@ void gamescreen::on_space19_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(19);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space19, turnTracker);
         }
     }
     else
@@ -1992,6 +1835,7 @@ void gamescreen::on_space19_clicked()
 void gamescreen::on_space20_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space20);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space20);
@@ -2014,15 +1858,19 @@ void gamescreen::on_space20_clicked()
             ui->message->setText("move a piece");
             movePieces(20);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space20, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space20->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space20->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space20->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(20);
             changeturn(is_mill);
         }
@@ -2030,6 +1878,10 @@ void gamescreen::on_space20_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(20);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space20, turnTracker);
         }
     }
     else
@@ -2041,6 +1893,7 @@ void gamescreen::on_space20_clicked()
 void gamescreen::on_space21_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space21);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space21);
@@ -2062,15 +1915,19 @@ void gamescreen::on_space21_clicked()
             ui->message->setText("move a piece");
             movePieces(21);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space21, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space21->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space21->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space21->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(21);
             changeturn(is_mill);
         }
@@ -2078,6 +1935,10 @@ void gamescreen::on_space21_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(21);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space21, turnTracker);
         }
     }
     else
@@ -2089,6 +1950,7 @@ void gamescreen::on_space21_clicked()
 void gamescreen::on_space22_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space22);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space22);
@@ -2110,16 +1972,20 @@ void gamescreen::on_space22_clicked()
             ui->message->setText("move a piece");
             movePieces(22);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space22, turnTracker);
+        }
 
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space22->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space22->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space22->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(22);
             changeturn(is_mill);
         }
@@ -2127,6 +1993,10 @@ void gamescreen::on_space22_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(22);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space22, turnTracker);
         }
     }
     else
@@ -2138,6 +2008,7 @@ void gamescreen::on_space22_clicked()
 void gamescreen::on_space23_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space23);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space23);
@@ -2159,15 +2030,19 @@ void gamescreen::on_space23_clicked()
             ui->message->setText("move a piece");
             movePieces(23);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space23, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space23->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space23->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space23->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(23);
             changeturn(is_mill);
         }
@@ -2175,6 +2050,10 @@ void gamescreen::on_space23_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(23);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space23, turnTracker);
         }
     }
     else
@@ -2186,6 +2065,7 @@ void gamescreen::on_space23_clicked()
 void gamescreen::on_space24_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space24);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space24);
@@ -2207,15 +2087,19 @@ void gamescreen::on_space24_clicked()
             ui->message->setText("move a piece");
             movePieces(24);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space24, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if ((p2_num_pieces > 0) && (ui->space24->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
+        if ((p1_num_pieces > 0) && (ui->space24->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space24->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-            p2_num_pieces--;
+            p1_num_pieces--;
             p1_pieces_on_board++;
-            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(24);
             changeturn(is_mill);
         }
@@ -2223,6 +2107,10 @@ void gamescreen::on_space24_clicked()
         {
             ui->message->setText("move a piece");
             movePieces(24);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space24, turnTracker);
         }
     }
     else

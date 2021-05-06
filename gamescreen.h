@@ -38,6 +38,7 @@ public:
     bool changed = false;
     int p0_pieces_on_board = 0;
     int p1_pieces_on_board = 0;
+    bool game_end = false;
     QVector<QPushButton*> move_from;
     QVector<QString> styleMemory;
     QVector<QPushButton*> buttons;
@@ -69,6 +70,11 @@ public:
      *
      *parameter:    place ->
      */
+
+    void changeturn(bool isMill);
+
+    void endgame(int p0_num_pieces, int p2_num_pieces, int p0_pieces_on_board, int p1_pieces_on_board);
+
     void movePieces(int place);
 
     void WhiteToBlue(QPushButton* button1);

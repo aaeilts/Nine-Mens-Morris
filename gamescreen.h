@@ -32,11 +32,12 @@ public:
      */
 
     int turnTracker = 0;
-    int p0_num_pieces = 3;
-    int p1_num_pieces = 3;
+    int p0_num_pieces = 4;
+    int p1_num_pieces = 4;
     bool is_mill = false;
     int p0_pieces_on_board = 0;
     int p1_pieces_on_board = 0;
+
 
     QVector<QString> styleMemory;
     QVector<QPushButton*> buttons;
@@ -80,6 +81,7 @@ public:
      *              turnTracker-> used in switch/case to see who gets to FLY/move
      */
     void fly_phase(QPushButton* pos,int turnTracker);
+//    bool fly_check();
 
     /*
      * detect_mill()

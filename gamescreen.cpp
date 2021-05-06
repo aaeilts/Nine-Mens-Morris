@@ -644,9 +644,9 @@ void gamescreen::changeturn(bool isMill)
        ui->turn_label->setText("TurnTracker Error");
    }
 
-   cout << "--- \nturnTracker = " << turnTracker << endl;
+   cout << "turnTracker = " << turnTracker << endl;
    cout << "gray pieces left = " << p0_num_pieces << endl;
-   cout << "black pieces left = " << p1_num_pieces << endl << "--- \n";
+   cout << "black pieces left = " << p1_num_pieces << endl;
 
 }
 
@@ -703,10 +703,11 @@ void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
 
 void gamescreen::fly_phase(QPushButton *pos, int turnTracker)
 {
+
+
     string test;
     cout << "***FLY PHASE***" << endl;
     cout << "enter something: ";
-    cin >> test;
 }
 
 // detect_mill will check for mill every time a  piece is placed.
@@ -1009,14 +1010,12 @@ bool gamescreen::detect_mill(int pos)
         if ( (ui->space1->styleSheet() == ui->space10->styleSheet()) && (ui->space10->styleSheet() == ui->space22->styleSheet()) &&
              ui->space1->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "CASE 22.A" << endl;
             mill_output(turnTracker);
             return true;
         }
         else if ( (ui->space22->styleSheet() == ui->space23->styleSheet()) && (ui->space23->styleSheet() == ui->space24->styleSheet()) &&
              ui->space22->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
-            cout << "CASE 22.b" << endl;
             mill_output(turnTracker);
             return true;
         }
@@ -1080,16 +1079,11 @@ void gamescreen::on_space1_clicked()
             movePieces(1);
         }
         // if no more pieces can be placed AND there are ONLY 3 pieces AND it's gray turn.
-        if( (p0_num_pieces == 0) && (p0_pieces_on_board == 3) && (turnTracker == 0))
+        if( (p0_num_pieces == 0) && (p0_pieces_on_board == 3) && (is_mill == false) )
         {
             cout << "entering gray fly_phase.....turnTracker = " << turnTracker << endl;
             fly_phase(ui->space1, turnTracker);
 
-        }
-        if( (p1_num_pieces == 0) && ( p1_pieces_on_board == 3)&& (turnTracker == 1))
-        {
-            cout << "entering black fly_phase.....turnTracker = " << turnTracker << endl;
-            fly_phase(ui->space1, turnTracker);
         }
     }
     else if (turnTracker == 1)//Black's Turn
@@ -1110,16 +1104,11 @@ void gamescreen::on_space1_clicked()
             cout << "Entering phase 2" << endl;
             movePieces(1);
         }
-        if( (p0_num_pieces == 0) && (p0_pieces_on_board == 3) )
+        if( (p1_num_pieces == 0) && ( p1_pieces_on_board == 3)&& (is_mill == false) )
         {
-
+            cout << "entering black fly_phase.....turnTracker = " << turnTracker << endl;
+            fly_phase(ui->space1, turnTracker);
         }
-        if( (p1_num_pieces == 0) && ( p1_pieces_on_board == 3))
-        {
-
-        }
-
-
     }
     else
     {

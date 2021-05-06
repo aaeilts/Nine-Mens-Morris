@@ -432,7 +432,7 @@ void gamescreen::on_space1_clicked()
     else if (turnTracker == 0)//Gray's Turn
     {
 
-        if (p1_num_pieces > 0) //will Set a piece gray if have pieces left to place
+        if ((p1_num_pieces > 0) && (ui->space1->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //will Set a piece gray if have pieces left to place
         {
             ui->space1->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -445,7 +445,7 @@ void gamescreen::on_space1_clicked()
     else if (turnTracker == 1)//Black's Turn
     {
 
-        if (p2_num_pieces > 0) //will set a piece black if have pieces left to place
+        if ((p2_num_pieces > 0) && (ui->space1->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //will set a piece black if have pieces left to place
         {
             ui->space1->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -474,7 +474,7 @@ void gamescreen::on_space2_clicked()
     else if (turnTracker == 0) //Gray's Turn
     {
 
-        if (p1_num_pieces > 0) //Place gray piece if pieces left
+        if ((p1_num_pieces > 0) && (ui->space2->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place gray piece if pieces left
         {
             ui->space2->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -486,7 +486,7 @@ void gamescreen::on_space2_clicked()
     else if (turnTracker == 1) //Black's Turn
     {
 
-        if (p2_num_pieces > 0) //Place black piece if pieces left
+        if ((p2_num_pieces > 0) && (ui->space2->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if pieces left
         {
             ui->space2->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -513,7 +513,7 @@ void gamescreen::on_space3_clicked()
     else if (turnTracker == 0) // Gray's turn
     {
 
-        if (p1_num_pieces > 0) // Place a gray piece if pieces left
+        if ((p1_num_pieces > 0) && (ui->space3->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place a gray piece if pieces left
         {
             ui->space3->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -525,7 +525,7 @@ void gamescreen::on_space3_clicked()
     else if (turnTracker == 1) // Black's turn
     {
 
-        if (p2_num_pieces > 0) // Place black piece if pieces left
+        if ((p2_num_pieces > 0) && (ui->space3->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if pieces left
         {
             ui->space3->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -552,7 +552,7 @@ void gamescreen::on_space4_clicked()
     }
     else if (turnTracker == 0) //Gray's Turn
     {
-        if (p1_num_pieces > 0) //Place gray piece if pieces available
+        if ((p1_num_pieces > 0) && (ui->space4->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place gray piece if pieces available
         {
             ui->space4->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -563,7 +563,7 @@ void gamescreen::on_space4_clicked()
     }
     else if (turnTracker == 1) // Black's turn
     {
-        if (p2_num_pieces > 0) // Place piece if pieces available
+        if ((p2_num_pieces > 0) && (ui->space4->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place piece if pieces available
         {
             ui->space4->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -589,7 +589,7 @@ void gamescreen::on_space5_clicked()
     }
     else if (turnTracker == 0) // Grays turn
     {
-        if (p1_num_pieces > 0) // Place a gray piece if any available
+        if ((p1_num_pieces > 0) && (ui->space5->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place a gray piece if any available
         {
             ui->space5->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -600,7 +600,7 @@ void gamescreen::on_space5_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p2_num_pieces > 0) //Place black piece if pieces available
+        if ((p2_num_pieces > 0) && (ui->space5->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if pieces available
         {
             ui->space5->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -626,7 +626,7 @@ void gamescreen::on_space6_clicked()
     }
     else if (turnTracker == 0) //Gray's turn
     {
-        if (p1_num_pieces > 0) //Place a gray piece
+        if ((p1_num_pieces > 0) && (ui->space6->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place a gray piece
         {
             ui->space6->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -637,7 +637,7 @@ void gamescreen::on_space6_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p2_num_pieces > 0) //Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space6->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space6->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -663,7 +663,7 @@ void gamescreen::on_space7_clicked()
     }
     else if (turnTracker == 0) //Gray's turn
     {
-        if (p1_num_pieces > 0) // Place gray piece if piece available
+        if ((p1_num_pieces > 0) && (ui->space7->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place gray piece if piece available
         {
             ui->space7->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -674,7 +674,7 @@ void gamescreen::on_space7_clicked()
     }
     else if (turnTracker == 1) //Black's Turn
     {
-        if (p2_num_pieces > 0) // Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space7->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space7->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -700,7 +700,7 @@ void gamescreen::on_space8_clicked()
     }
     else if (turnTracker == 0)//Grays Turn
     {
-        if (p1_num_pieces > 0) //Place a gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space8->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place a gray piece if available
         {
             ui->space8->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -711,7 +711,7 @@ void gamescreen::on_space8_clicked()
     }
     else if (turnTracker == 1) //Blacks turn
     {
-        if (p2_num_pieces > 0) // Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space8->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space8->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -737,7 +737,7 @@ void gamescreen::on_space9_clicked()
     }
     else if (turnTracker == 0) //Gray's turn
     {
-        if (p1_num_pieces > 0) //Place gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space9->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place gray piece if available
         {
             ui->space9->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -748,7 +748,7 @@ void gamescreen::on_space9_clicked()
     }
     else if (turnTracker == 1) // Black's turn
     {
-        if (p2_num_pieces > 0) // Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space9->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space9->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -774,7 +774,7 @@ void gamescreen::on_space10_clicked()
     }
     else if (turnTracker == 0) //Gray's turn
     {
-        if (p1_num_pieces > 0) //Place a gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space10->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place a gray piece if available
         {
             ui->space10->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -785,7 +785,7 @@ void gamescreen::on_space10_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p2_num_pieces > 0) //Place a black piece
+        if ((p2_num_pieces > 0) && (ui->space10->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place a black piece
         {
             ui->space10->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -811,7 +811,7 @@ void gamescreen::on_space11_clicked()
     }
     else if (turnTracker == 0) //Grays turn
     {
-        if (p1_num_pieces > 0) //Place grey piece if available
+        if ((p1_num_pieces > 0) && (ui->space11->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place grey piece if available
         {
             ui->space11->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -822,7 +822,7 @@ void gamescreen::on_space11_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p2_num_pieces > 0) //Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space11->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space11->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -848,7 +848,7 @@ void gamescreen::on_space12_clicked()
     }
     else if (turnTracker == 0) //Gray's turn
     {
-        if (p1_num_pieces > 0) //Place gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space12->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place gray piece if available
         {
             ui->space12->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -859,7 +859,7 @@ void gamescreen::on_space12_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p2_num_pieces > 0) //Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space12->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space12->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -885,7 +885,7 @@ void gamescreen::on_space13_clicked()
     }
     else if (turnTracker == 0) //Gray's turn
     {
-        if (p1_num_pieces > 0) // Place gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space13->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place gray piece if available
         {
             ui->space13->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -896,7 +896,7 @@ void gamescreen::on_space13_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p1_num_pieces > 0) //Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space13->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space13->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -922,7 +922,7 @@ void gamescreen::on_space14_clicked()
     }
     else if (turnTracker == 0) //Gray's turn
     {
-        if (p1_num_pieces > 0) //Place gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space14->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place gray piece if available
         {
             ui->space14->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -933,7 +933,7 @@ void gamescreen::on_space14_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p2_num_pieces > 0) // Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space14->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space14->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -959,7 +959,7 @@ void gamescreen::on_space15_clicked()
     }
     else if (turnTracker == 0) //Gray's turn
     {
-        if (p1_num_pieces > 0) //Place gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space15->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place gray piece if available
         {
             ui->space15->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -970,7 +970,7 @@ void gamescreen::on_space15_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p2_num_pieces > 0) // Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space15->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space15->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -996,7 +996,7 @@ void gamescreen::on_space16_clicked()
     }
     else if (turnTracker == 0) //Gray's turn
     {
-        if (p1_num_pieces > 0) //Place gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space16->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place gray piece if available
         {
             ui->space16->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -1007,7 +1007,7 @@ void gamescreen::on_space16_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p2_num_pieces > 0) // Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space16->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space16->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -1033,7 +1033,7 @@ void gamescreen::on_space17_clicked()
     }
     else if (turnTracker == 0) //Gray's turn
     {
-        if (p1_num_pieces > 0) //Place gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space17->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place gray piece if available
         {
             ui->space17->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -1044,7 +1044,7 @@ void gamescreen::on_space17_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p2_num_pieces > 0) // Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space17->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space17->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -1070,7 +1070,7 @@ void gamescreen::on_space18_clicked()
     }
     else if (turnTracker == 0) // Gray's turn
     {
-        if (p1_num_pieces > 0) //Place gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space18->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place gray piece if available
         {
             ui->space18->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -1081,7 +1081,7 @@ void gamescreen::on_space18_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p2_num_pieces > 0) //Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space18->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space18->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -1105,9 +1105,9 @@ void gamescreen::on_space19_clicked()
         is_mill = false;
         changeturn(is_mill);
     }
-    else if (turnTracker == 0)//Gray's turn
+    else if (turnTracker == 0) //Gray's turn
     {
-        if (p1_num_pieces > 0)//Place gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space19->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place gray piece if available
         {
             ui->space19->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -1118,7 +1118,7 @@ void gamescreen::on_space19_clicked()
     }
     else if (turnTracker == 1) // Black's turn
     {
-        if (p2_num_pieces > 0) //Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space19->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space19->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -1145,7 +1145,7 @@ void gamescreen::on_space20_clicked()
     else if (turnTracker == 0) // Gray's turn
     {
 
-        if (p1_num_pieces > 0) // Place gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space20->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place gray piece if available
         {
             ui->space20->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -1156,7 +1156,7 @@ void gamescreen::on_space20_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p2_num_pieces > 0) // Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space20->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space20->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -1182,7 +1182,7 @@ void gamescreen::on_space21_clicked()
     }
     else if (turnTracker  == 0) //Gray's turn
     {
-        if (p1_num_pieces > 0) //Place gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space21->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place gray piece if available
         {
             ui->space21->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -1193,7 +1193,7 @@ void gamescreen::on_space21_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p2_num_pieces > 0) //Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space21->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space21->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -1219,7 +1219,7 @@ void gamescreen::on_space22_clicked()
     }
     else if (turnTracker == 0)//Gray's turn
     {
-        if (p1_num_pieces > 0) //Place gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space22->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place gray piece if available
         {
             ui->space22->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -1231,7 +1231,7 @@ void gamescreen::on_space22_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p2_num_pieces > 0) // Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space22->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) // Place black piece if available
         {
             ui->space22->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -1257,7 +1257,7 @@ void gamescreen::on_space23_clicked()
     }
     else if (turnTracker == 0) //Gray's turn
     {
-        if (p1_num_pieces > 0) //Place gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space23->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place gray piece if available
         {
             ui->space23->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -1268,7 +1268,7 @@ void gamescreen::on_space23_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p2_num_pieces > 0) //Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space23->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space23->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
@@ -1294,7 +1294,7 @@ void gamescreen::on_space24_clicked()
     }
     else if (turnTracker == 0) //Gray's turn
     {
-        if (p1_num_pieces > 0) //Place gray piece if available
+        if ((p1_num_pieces > 0) && (ui->space24->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place gray piece if available
         {
             ui->space24->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
@@ -1305,7 +1305,7 @@ void gamescreen::on_space24_clicked()
     }
     else if (turnTracker == 1) //Black's turn
     {
-        if (p2_num_pieces > 0) //Place black piece if available
+        if ((p2_num_pieces > 0) && (ui->space24->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")) //Place black piece if available
         {
             ui->space24->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;

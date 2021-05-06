@@ -72,7 +72,13 @@ public:
 
     void moveAPiece(int index);
 
-    void fly_phase();
+    /*
+     *fly_phase()
+     *
+     *parameter:    pos-> object that points to which piece we want to FLY/move (based on next click)
+     *              turnTracker-> used in switch/case to see who gets to FLY/move
+     */
+    void fly_phase(QPushButton* pos,int turnTracker);
 
     /*
      * detect_mill()

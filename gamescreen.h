@@ -28,27 +28,48 @@ public:
      * is_mill:             signals the program if there is a mill on board with T or F value.
      * p1_pieces_on_board:  keeps track of current number of pieces on board for p1
      * p2_pieces_on_board   keeps track of current number of pieces on board for p2
+     * globalChage          Used when moving a piece
      */
 
     int turnTracker = 0;
-    int p1_num_pieces = 9;
+    int p0_num_pieces = 9;
     int p2_num_pieces = 9;
     bool is_mill = false;
+    int p0_pieces_on_board = 0;
     int p1_pieces_on_board = 0;
-    int p2_pieces_on_board = 0;
-
+    QVector<QString> styleMemory;
+    QVector<QPushButton*> buttons;
+    QVector<QPushButton*> tempButtonHolder;
+    QVector<QVector<int>> adjacents = {{2, 10}, {1,3}, {2, 15},
+                                       {5,11}, {2, 4, 6, 8}, {5,16},
+                                       {8,12}, {5,7,9}, {8,13},
+                                       {1,11,22}, {4, 10, 12, 19}, {7,11,16},
+                                       {9,14,18}, {6,13,15,21}, {3,14,24},
+                                       {12,17}, {16,18,20}, {13,17},
+                                       {11,20}, {17,19,21,23}, {14,20},
+                                       {10,23}, {20,22,24}, {15,23}};
+    bool secondPhase = false;
+    int createvector = 0;
+    //QList<QList<QPushButton*>> adjacents;
 
     /*
      *
      *
      */
-
+    void PopulateVector();
     /*
      * changeturn()... changes the turn
      * parameter:   isMill -> if mill is present. dont change turns
      */
-
     void changeturn(bool isMill);
+
+    void movePieces(int place);
+
+    void phaseTwo(int place);
+
+    void ChangeAdjacentEmpty(int switchCase);
+
+    void moveAPiece(int index);
 
     /* chekcs for mill
      *
@@ -57,7 +78,6 @@ public:
      * Returns: TRUE if mill detected
      *          FALSE if mill NOT detected
      */
-
     bool detect_mill(int pos);
 
     //output when a mill happens

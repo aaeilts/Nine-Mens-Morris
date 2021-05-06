@@ -39,20 +39,18 @@ void gamescreen::mill_output(int turnTracker)
 
 }
 
-bool gamescreen::remove_check(QPushButton* pos)
+void gamescreen::remove_check(int turnTracker)
 {
     cout << "entered remove_check() " << endl;
-
-    do {
-        if(pos->styleSheet() != ("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;"))
-        {
-            cout << "test completed" << endl;
+    // if turnTracker == gray
+    switch (turnTracker)
+    {
+        case 0 :
             break;
-        }
-    } while (true);
+        case 1 :
+            break;
 
-
-    return false;
+    };
 }
 
 // detect_mill will check for mill every time a  piece is placed.
@@ -400,7 +398,7 @@ void gamescreen::on_space1_clicked()
 {
     if(is_mill == true) // each click will first check if mill is present..
     {//FIXME: IMPLEMENT remove_check() method
-        removabe = remove_check(ui->space1);
+        remove_check(turnTracker);
         cout << "just outside remove_checkl();" << endl;
         ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;

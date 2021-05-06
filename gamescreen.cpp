@@ -276,9 +276,9 @@ void gamescreen::changeturn(bool isMill)
        ui->turn_label->setText("TurnTracker Error");
    }
 
-   cout << "turnTracker = " << turnTracker << endl;
-   cout << "gray pieces left = " << p0_num_pieces << endl;
-   cout << "black pieces left = " << p1_num_pieces << endl;
+//   cout << "turnTracker = " << turnTracker << endl;
+//   cout << "gray pieces left = " << p0_num_pieces << endl;
+//   cout << "black pieces left = " << p1_num_pieces << endl;
 
 }
 
@@ -335,10 +335,41 @@ void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
 
 void gamescreen::fly_phase(QPushButton *pos, int turnTracker)
 {
-    cout << "***FLY PHASE***" << endl;
+    switch (turnTracker)
+    {
+        //gray fly
+        case 0:
+            cout << "select a Gray Piece to move" << endl;
+            if(pos->styleSheet() == "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
+            {
+                cout << "select a new position" << endl;
+                pos->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+                turnTracker = 0;
+                break;
+            }
+            else if(pos->styleSheet() != "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
+            {
+                cout << "ERROR: Please select a Gray Piece to fly" << endl;
+                turnTracker = 0;
+                break;
+            }
+    case 1:
+        cout << "select a Black Piece to move" << endl;
+        if(pos->styleSheet() == "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
+        {
+            cout << "select a new position" << endl;
+            pos->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+            turnTracker = 1;
+            break;
+        }
+        else if(pos->styleSheet() != "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
+        {
+            cout << "ERROR: Please select a Black Piece to fly" << endl;
+            turnTracker = 1;
+            break;
+        }
 
-
-
+    }
 }
 
 // detect_mill will check for mill every time a  piece is placed.

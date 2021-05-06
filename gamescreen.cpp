@@ -765,6 +765,7 @@ void gamescreen::on_space10_clicked()
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(10);
             changeturn(is_mill);
+        }
     }
     else
     {

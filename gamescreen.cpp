@@ -661,12 +661,12 @@ void gamescreen::mill_output(int turnTracker)
 
 //checks if desired piece to be removed is applicable... then removes piece
 void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
-{
+{//FIXME:
     switch (turnTracker)
     {
         // if gray gets mill
         case 0 :
-            //if position = black piece. 'remove' piece
+            //if position = black piece, then remove piece
             if(pos->styleSheet() == "background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
             {
                 pos->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
@@ -686,6 +686,7 @@ void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
             {
                 cout << "removing piece..." << endl;
                 pos->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+                is_mill = false; // piece removed, turn mill status OFF.
             }
             else if( (pos->styleSheet() == "background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;") ||
                      (pos->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;"))
@@ -1043,7 +1044,7 @@ void gamescreen::on_space1_clicked()
     PopulateVector(); //Populates vector of board spaces on first run through
 
     if(is_mill == true) // each click will first check if mill is present..
-    {//FIXME: IMPLEMENT remove_check() method
+    {
         remove_piece(turnTracker, ui->space1);
         changeturn(is_mill);
     }

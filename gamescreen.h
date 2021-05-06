@@ -32,8 +32,8 @@ public:
      */
 
     int turnTracker = 0;
-    int p0_num_pieces = 9;
-    int p2_num_pieces = 9;
+    int p0_num_pieces = 3;
+    int p1_num_pieces = 3;
     bool is_mill = false;
     int p0_pieces_on_board = 0;
     int p1_pieces_on_board = 0;

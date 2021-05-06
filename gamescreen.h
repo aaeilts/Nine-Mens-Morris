@@ -28,10 +28,14 @@ public:
     int turnTracker = 0;
     bool is_mill = false;
     bool removabe = false;
-    void changeturn(bool isMill);
 
     ~gamescreen();
 
+    /*
+     * changeturn()... changes the turn
+     * parameter:   isMill -> if mill is present. dont change turns
+     */
+    void changeturn(bool isMill);
 
     /* chekcs for mill
      *
@@ -47,7 +51,7 @@ public:
 
     //checks if its OK to remove a specific piece
     //FIXME: FIGURE OUT HOW TO IMPLEMENT THIS METHOD
-    void remove_piece(int turnTracker);
+    void remove_piece(int turnTracker, QPushButton* pos);
 
     /*
      * method(s) to place a piece. spaces1-24 go from left to right. top to bottom.

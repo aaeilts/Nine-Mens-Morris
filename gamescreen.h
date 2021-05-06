@@ -28,6 +28,7 @@ public:
     int turnTracker = 0;
     bool is_mill = false;
     bool removabe = false;
+    void changeturn();
 
     ~gamescreen();
 

@@ -21,6 +21,35 @@ gamescreen::~gamescreen()
     delete ui;
 }
 
+//gameend function
+void gamescreen::endgame(int p0_num_pieces, int p2_num_pieces, int p0_pieces_on_board, int p1_pieces_on_board){
+    //if all pieces have been places
+    if (p0_num_pieces == 0 && p2_num_pieces == 0)
+    {
+        //player 1 has less than 3 pieces and unable to make a mill
+        if (p0_pieces_on_board < 3)
+        {
+            QApplication::quit();
+        }
+        //player 2 has less than 3 pieces and unable to make a mill
+        else if (p1_pieces_on_board < 3)
+        {
+            QApplication::quit();
+        }
+        /*player 1 no valid moves
+        else if ()
+        {
+            QApplication::quit();
+        }
+        //player 2 no valid moves
+        else if ()
+        {
+            QApplication::quit();
+        }
+        */
+    }
+}
+
 //This function populates the declared vector "adjacents" with the adjacent angles of the index+1 space
 void gamescreen::PopulateVector(){
     if (createvector == 0)
@@ -60,8 +89,6 @@ void gamescreen::movePieces(int place){
     else{
         ChangeAdjacentEmpty(place);
     }
-
-
 }
 
 void gamescreen::phaseTwo(int place){
@@ -651,10 +678,10 @@ void gamescreen::mill_output(int turnTracker)
 {
     //if turnTracjer remainder == 0 output for gray team. 1 for black team
     if (turnTracker == 0) {
-        cout << "\n***Gray Team scored a mill! Remove a Black Team's piece***" << endl;
+        ui->message->setText("scored a mill! remove player 2 piece");
     }
     else if (turnTracker == 1) {
-        cout << "\n***Black Team scored a mill! Remove a Gray Team's piece***" << endl;
+        ui->message->setText("scored a mill! remove player 1 piece");
     }
 
 }
@@ -670,27 +697,30 @@ void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
             if(pos->styleSheet() == "background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
             {
                 pos->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-                cout << "*** removing piece ***" << endl;
+                ui->message->setText("removing piece");
                 is_mill = false; // piece removed, turn mill status OFF.
+                changeturn(true);
             }
             //else if position is gray OR white, pick a different piece
             else if( (pos->styleSheet() == "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;") ||
                      (pos->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;"))
             {
-                cout << "incorrect choice try again" << endl;
+                ui->message->setText("incorrect choice try again");
             }
             break;
         //if black gets mill
         case 1 :
             if(pos->styleSheet() == "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
             {
-                cout << "removing piece..." << endl;
+                ui->message->setText("removing piece");
                 pos->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+                is_mill = false; // piece removed, turn mill status OFF.
+                changeturn(true);
             }
             else if( (pos->styleSheet() == "background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;") ||
                      (pos->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;"))
             {
-                cout << "incorrect choice try again" << endl;
+                ui->message->setText("incorrect piece try again");
             }
             break;
     };
@@ -1061,7 +1091,7 @@ void gamescreen::on_space1_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
-            cout << "Entering phase 2" << endl;
+            ui->message->setText("move a piece");
             movePieces(1);
         }
     }
@@ -1079,7 +1109,7 @@ void gamescreen::on_space1_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
-            cout << "Entering phase 2" << endl;
+            ui->message->setText("move a piece");
             movePieces(1);
         }
 
@@ -1112,6 +1142,7 @@ void gamescreen::on_space2_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(2);
         }
     }
@@ -1129,6 +1160,7 @@ void gamescreen::on_space2_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(2);
         }
     }
@@ -1160,6 +1192,7 @@ void gamescreen::on_space3_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(3);
         }
     }
@@ -1177,6 +1210,7 @@ void gamescreen::on_space3_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(3);
         }
 
@@ -1208,6 +1242,7 @@ void gamescreen::on_space4_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(4);
         }
     }
@@ -1224,6 +1259,7 @@ void gamescreen::on_space4_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(4);
         }
     }
@@ -1254,6 +1290,7 @@ void gamescreen::on_space5_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(5);
         }
     }
@@ -1270,6 +1307,7 @@ void gamescreen::on_space5_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(5);
         }
     }
@@ -1300,6 +1338,7 @@ void gamescreen::on_space6_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(6);
         }
     }
@@ -1316,6 +1355,7 @@ void gamescreen::on_space6_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(6);
         }
     }
@@ -1346,6 +1386,7 @@ void gamescreen::on_space7_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(7);
         }
     }
@@ -1362,6 +1403,7 @@ void gamescreen::on_space7_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(7);
         }
     }
@@ -1392,6 +1434,7 @@ void gamescreen::on_space8_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(8);
         }
     }
@@ -1408,6 +1451,7 @@ void gamescreen::on_space8_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(8);
         }
     }
@@ -1438,6 +1482,7 @@ void gamescreen::on_space9_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(9);
         }
     }
@@ -1454,6 +1499,7 @@ void gamescreen::on_space9_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(9);
         }
     }
@@ -1484,6 +1530,7 @@ void gamescreen::on_space10_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(10);
         }
     }
@@ -1500,6 +1547,7 @@ void gamescreen::on_space10_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(10);
         }
     }
@@ -1530,6 +1578,7 @@ void gamescreen::on_space11_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(11);
         }
     }
@@ -1546,6 +1595,7 @@ void gamescreen::on_space11_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(11);
         }
     }
@@ -1576,7 +1626,8 @@ void gamescreen::on_space12_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
-            movePieces(1);
+            ui->message->setText("move a piece");
+            movePieces(12);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -1592,7 +1643,8 @@ void gamescreen::on_space12_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
-            movePieces(1);
+            ui->message->setText("move a piece");
+            movePieces(12);
         }
     }
     else
@@ -1622,6 +1674,7 @@ void gamescreen::on_space13_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(13);
         }
     }
@@ -1638,6 +1691,7 @@ void gamescreen::on_space13_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(13);
         }
     }
@@ -1668,6 +1722,7 @@ void gamescreen::on_space14_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(14);
         }
     }
@@ -1684,6 +1739,7 @@ void gamescreen::on_space14_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(14);
         }
     }
@@ -1714,6 +1770,7 @@ void gamescreen::on_space15_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(15);
         }
     }
@@ -1730,6 +1787,7 @@ void gamescreen::on_space15_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(15);
         }
     }
@@ -1760,6 +1818,7 @@ void gamescreen::on_space16_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(16);
         }
     }
@@ -1776,6 +1835,7 @@ void gamescreen::on_space16_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(16);
         }
     }
@@ -1806,6 +1866,7 @@ void gamescreen::on_space17_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(17);
         }
     }
@@ -1822,6 +1883,7 @@ void gamescreen::on_space17_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(17);
         }
     }
@@ -1852,6 +1914,7 @@ void gamescreen::on_space18_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(18);
         }
     }
@@ -1868,6 +1931,7 @@ void gamescreen::on_space18_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(18);
         }
     }
@@ -1898,6 +1962,7 @@ void gamescreen::on_space19_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(19);
         }
     }
@@ -1914,6 +1979,7 @@ void gamescreen::on_space19_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(19);
         }
     }
@@ -1945,6 +2011,7 @@ void gamescreen::on_space20_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(20);
         }
     }
@@ -1961,6 +2028,7 @@ void gamescreen::on_space20_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(20);
         }
     }
@@ -1991,6 +2059,7 @@ void gamescreen::on_space21_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(21);
         }
     }
@@ -2007,6 +2076,7 @@ void gamescreen::on_space21_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(21);
         }
     }
@@ -2037,6 +2107,7 @@ void gamescreen::on_space22_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(22);
         }
 
@@ -2054,6 +2125,7 @@ void gamescreen::on_space22_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(22);
         }
     }
@@ -2084,6 +2156,7 @@ void gamescreen::on_space23_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(23);
         }
     }
@@ -2100,6 +2173,7 @@ void gamescreen::on_space23_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(23);
         }
     }
@@ -2130,6 +2204,7 @@ void gamescreen::on_space24_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(24);
         }
     }
@@ -2146,6 +2221,7 @@ void gamescreen::on_space24_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
+            ui->message->setText("move a piece");
             movePieces(24);
         }
     }

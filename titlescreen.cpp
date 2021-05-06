@@ -20,7 +20,9 @@ void TitleScreen::on_pushButton_clicked()
 //    gamescreen gameScreen;
 //    gameScreen.setModal(true);
 //    gameScreen.exec();
+
     hide();                                 //Hides title window when opening second window
     gameScreen = new gamescreen(this);
     gameScreen->show();
 }
+

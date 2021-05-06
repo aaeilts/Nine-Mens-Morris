@@ -37,6 +37,7 @@ public:
     bool is_mill = false;
     int p0_pieces_on_board = 0;
     int p1_pieces_on_board = 0;
+    bool game_end = false;
     QVector<QString> styleMemory;
     QVector<QPushButton*> buttons;
     QVector<QPushButton*> tempButtonHolder;
@@ -62,6 +63,8 @@ public:
      * parameter:   isMill -> if mill is present. dont change turns
      */
     void changeturn(bool isMill);
+
+    void endgame(int p0_num_pieces, int p2_num_pieces, int p0_pieces_on_board, int p1_pieces_on_board);
 
     void movePieces(int place);
 

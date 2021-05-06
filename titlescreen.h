@@ -5,7 +5,9 @@
 #include "gamescreen.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class TitleScreen; }
+namespace Ui {
+class TitleScreen;
+}
 QT_END_NAMESPACE
 
 class TitleScreen : public QMainWindow
@@ -18,6 +20,7 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+
 
 private:
     Ui::TitleScreen *ui;

@@ -19,24 +19,35 @@ class gamescreen : public QDialog
 
 public:
     explicit gamescreen(QWidget *parent = nullptr);
+    ~gamescreen();
 
     /*
-     *turnTracker:      keeps track of who's turn it is
-     *is_mill:          signals the program if there is a mill on board with T or F value.
-     *removable         signals the program if piece can be removed or not.
+     * turnTracker:         keeps track of who's turn it is
+     * p1_num_pieces:       keeps track of total allowed pieces for p1
+     * p2_num_pieces:       keeps track of total allowed pieces for p2
+     * is_mill:             signals the program if there is a mill on board with T or F value.
+     * p1_pieces_on_board:  keeps track of current number of pieces on board for p1
+     * p2_pieces_on_board   keeps track of current number of pieces on board for p2
      */
+
     int turnTracker = 0;
     int p1_num_pieces = 9;
     int p2_num_pieces = 9;
     bool is_mill = false;
-    bool removabe = false;
+    int p1_pieces_on_board = 0;
+    int p2_pieces_on_board = 0;
 
-    ~gamescreen();
+
+    /*
+     *
+     *
+     */
 
     /*
      * changeturn()... changes the turn
      * parameter:   isMill -> if mill is present. dont change turns
      */
+
     void changeturn(bool isMill);
 
     /* chekcs for mill
@@ -46,13 +57,17 @@ public:
      * Returns: TRUE if mill detected
      *          FALSE if mill NOT detected
      */
+
     bool detect_mill(int pos);
 
     //output when a mill happens
+
     void mill_output(int turnTracker);
 
-    //checks if its OK to remove a specific piece
-    //FIXME: FIGURE OUT HOW TO IMPLEMENT THIS METHOD
+    /*
+     * checks if its OK to remove a specific piece
+     */
+
     void remove_piece(int turnTracker, QPushButton* pos);
 
     /*

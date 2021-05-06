@@ -26,6 +26,8 @@ public:
      *removable         signals the program if piece can be removed or not.
      */
     int turnTracker = 0;
+    int p1_num_pieces = 9;
+    int p2_num_pieces = 9;
     bool is_mill = false;
     bool removabe = false;
     void changeturn(bool isMill);

@@ -421,17 +421,31 @@ void gamescreen::on_space1_clicked()
         is_mill = false;
         changeturn(is_mill);
     }
-    else if (turnTracker == 0)//will SET A PIECE GRAY
+    else if (turnTracker == 0)//Gray's Turn
     {
-        ui->space1->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(1); // check for mill
-        changeturn(is_mill);
+
+        if (p1_num_pieces > 0) //will Set a piece gray if have pieces left to place
+        {
+            ui->space1->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(1); // check for mill
+            changeturn(is_mill);
+        }
+
     }
-    else if (turnTracker == 1)//will SET A PIECE BLACK
+    else if (turnTracker == 1)//Black's Turn
     {
-        ui->space1->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(1); // check for mill
-        changeturn(is_mill);
+
+        if (p2_num_pieces > 0) //will set a piece black if have pieces left to place
+        {
+            ui->space1->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(1); // check for mill
+            changeturn(is_mill);
+        }
+
     }
     else
     {
@@ -446,17 +460,29 @@ void gamescreen::on_space2_clicked()
         ui->space2->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) //Gray's Turn
     {
-        ui->space2->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(2);
-        changeturn(is_mill);
+
+        if (p1_num_pieces > 0) //Place gray piece if pieces left
+        {
+            ui->space2->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(2);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's Turn
     {
-        ui->space2->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(2);
-        changeturn(is_mill);
+
+        if (p2_num_pieces > 0) //Place black piece if pieces left
+        {
+            ui->space2->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(2);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -471,17 +497,30 @@ void gamescreen::on_space3_clicked()
         ui->space3->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) // Gray's turn
     {
-        ui->space3->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(3);
-        changeturn(is_mill);
+
+        if (p1_num_pieces > 0) // Place a gray piece if pieces left
+        {
+            ui->space3->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(3);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) // Black's turn
     {
-        ui->space3->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(3);
-        changeturn(is_mill);
+
+        if (p2_num_pieces > 0) // Place black piece if pieces left
+        {
+            ui->space3->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(3);
+            changeturn(is_mill);
+        }
+
     }
     else
     {
@@ -496,17 +535,27 @@ void gamescreen::on_space4_clicked()
         ui->space4->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) //Gray's Turn
     {
-        ui->space4->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(4);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place gray piece if pieces available
+        {
+            ui->space4->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(4);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) // Black's turn
     {
-        ui->space4->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(4);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) // Place piece if pieces available
+        {
+            ui->space4->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(4);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -521,17 +570,27 @@ void gamescreen::on_space5_clicked()
         ui->space5->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) // Grays turn
     {
-        ui->space5->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(5);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) // Place a gray piece if any available
+        {
+            ui->space5->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(5);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space5->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(5);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) //Place black piece if pieces available
+        {
+            ui->space5->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(5);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -546,17 +605,27 @@ void gamescreen::on_space6_clicked()
         ui->space6->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) //Gray's turn
     {
-        ui->space6->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(6);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place a gray piece
+        {
+            ui->space6->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(6);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space6->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(6);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) //Place black piece if available
+        {
+            ui->space6->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(6);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -571,17 +640,27 @@ void gamescreen::on_space7_clicked()
         ui->space7->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) //Gray's turn
     {
-        ui->space7->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(7);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) // Place gray piece if piece available
+        {
+            ui->space7->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(7);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's Turn
     {
-        ui->space7->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(7);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) // Place black piece if available
+        {
+            ui->space7->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(7);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -596,17 +675,27 @@ void gamescreen::on_space8_clicked()
         ui->space8->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0)//Grays Turn
     {
-        ui->space8->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(8);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place a gray piece if available
+        {
+            ui->space8->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(8);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Blacks turn
     {
-        ui->space8->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(8);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) // Place black piece if available
+        {
+            ui->space8->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(8);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -621,17 +710,27 @@ void gamescreen::on_space9_clicked()
         ui->space9->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) //Gray's turn
     {
-        ui->space9->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(9);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place gray piece if available
+        {
+            ui->space9->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(9);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) // Black's turn
     {
-        ui->space9->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(9);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) // Place black piece if available
+        {
+            ui->space9->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(9);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -646,17 +745,26 @@ void gamescreen::on_space10_clicked()
         ui->space10->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) //Gray's turn
     {
-        ui->space10->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(10);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place a gray piece if available
+        {
+            ui->space10->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(10);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space10->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(10);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) //Place a black piece
+        {
+            ui->space10->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(10);
+            changeturn(is_mill);
     }
     else
     {
@@ -671,17 +779,27 @@ void gamescreen::on_space11_clicked()
         ui->space11->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) //Grays turn
     {
-        ui->space11->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(11);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place grey piece if available
+        {
+            ui->space11->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(11);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space11->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(11);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) //Place black piece if available
+        {
+            ui->space11->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(11);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -696,17 +814,27 @@ void gamescreen::on_space12_clicked()
         ui->space12->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) //Gray's turn
     {
-        ui->space12->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(12);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place gray piece if available
+        {
+            ui->space12->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(12);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space12->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(12);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) //Place black piece if available
+        {
+            ui->space12->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(12);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -721,17 +849,27 @@ void gamescreen::on_space13_clicked()
         ui->space13->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) //Gray's turn
     {
-        ui->space13->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(13);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) // Place gray piece if available
+        {
+            ui->space13->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(13);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space13->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(13);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place black piece if available
+        {
+            ui->space13->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(13);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -746,17 +884,27 @@ void gamescreen::on_space14_clicked()
         ui->space14->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) //Gray's turn
     {
-        ui->space14->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(14);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place gray piece if available
+        {
+            ui->space14->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(14);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space14->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(14);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) // Place black piece if available
+        {
+            ui->space14->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(14);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -771,17 +919,27 @@ void gamescreen::on_space15_clicked()
         ui->space15->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) //Gray's turn
     {
-        ui->space15->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(15);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place gray piece if available
+        {
+            ui->space15->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(15);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space15->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(15);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) // Place black piece if available
+        {
+            ui->space15->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(15);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -796,17 +954,27 @@ void gamescreen::on_space16_clicked()
         ui->space16->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) //Gray's turn
     {
-        ui->space16->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(16);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place gray piece if available
+        {
+            ui->space16->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(16);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space16->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(16);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) // Place black piece if available
+        {
+            ui->space16->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(16);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -821,17 +989,27 @@ void gamescreen::on_space17_clicked()
         ui->space17->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) //Gray's turn
     {
-        ui->space17->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(17);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place gray piece if available
+        {
+            ui->space17->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(17);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space17->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(17);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) // Place black piece if available
+        {
+            ui->space17->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(17);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -846,17 +1024,27 @@ void gamescreen::on_space18_clicked()
         ui->space18->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) // Gray's turn
     {
-        ui->space18->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(18);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place gray piece if available
+        {
+            ui->space18->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(18);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space18->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(18);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) //Place black piece if available
+        {
+            ui->space18->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(18);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -871,17 +1059,27 @@ void gamescreen::on_space19_clicked()
         ui->space19->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0)//Gray's turn
     {
-        ui->space19->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(19);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0)//Place gray piece if available
+        {
+            ui->space19->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(19);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) // Black's turn
     {
-        ui->space19->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(19);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) //Place black piece if available
+        {
+            ui->space19->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(19);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -896,17 +1094,28 @@ void gamescreen::on_space20_clicked()
         ui->space20->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) // Gray's turn
     {
-        ui->space20->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(20);
-        changeturn(is_mill);
+
+        if (p1_num_pieces > 0) // Place gray piece if available
+        {
+            ui->space20->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(20);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space20->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(20);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) // Place black piece if available
+        {
+            ui->space20->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(20);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -921,17 +1130,27 @@ void gamescreen::on_space21_clicked()
         ui->space21->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker  == 0)
+    else if (turnTracker  == 0) //Gray's turn
     {
-        ui->space21->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(21);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place gray piece if available
+        {
+            ui->space21->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(21);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space21->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(21);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) //Place black piece if available
+        {
+            ui->space21->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(21);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -946,17 +1165,28 @@ void gamescreen::on_space22_clicked()
         ui->space22->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0)//Gray's turn
     {
-        ui->space22->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(22);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place gray piece if available
+        {
+            ui->space22->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(22);
+            changeturn(is_mill);
+        }
+
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space22->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(22);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) // Place black piece if available
+        {
+            ui->space22->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(22);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -971,17 +1201,27 @@ void gamescreen::on_space23_clicked()
         ui->space23->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) //Gray's turn
     {
-        ui->space23->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(23);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place gray piece if available
+        {
+            ui->space23->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(23);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space23->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(23);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) //Place black piece if available
+        {
+            ui->space23->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(23);
+            changeturn(is_mill);
+        }
     }
     else
     {
@@ -996,17 +1236,27 @@ void gamescreen::on_space24_clicked()
         ui->space24->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }
-    else if (turnTracker == 0)
+    else if (turnTracker == 0) //Gray's turn
     {
-        ui->space24->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(24);
-        changeturn(is_mill);
+        if (p1_num_pieces > 0) //Place gray piece if available
+        {
+            ui->space24->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p1_num_pieces--;
+            ui->p1_pieces->setText(QString::number(p1_num_pieces));
+            is_mill = detect_mill(24);
+            changeturn(is_mill);
+        }
     }
-    else if (turnTracker == 1)
+    else if (turnTracker == 1) //Black's turn
     {
-        ui->space24->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
-        is_mill = detect_mill(24);
-        changeturn(is_mill);
+        if (p2_num_pieces > 0) //Place black piece if available
+        {
+            ui->space24->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
+            p2_num_pieces--;
+            ui->p2_pieces->setText(QString::number(p2_num_pieces));
+            is_mill = detect_mill(24);
+            changeturn(is_mill);
+        }
     }
     else
     {

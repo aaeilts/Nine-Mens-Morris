@@ -276,6 +276,10 @@ void gamescreen::changeturn(bool isMill)
        ui->turn_label->setText("TurnTracker Error");
    }
 
+   cout << "turnTracker = " << turnTracker << endl;
+   cout << "gray pieces left = " << p0_num_pieces << endl;
+   cout << "black pieces left = " << p1_num_pieces << endl;
+
 }
 
 //mill_output outputs specific mill message for whichever team got it.
@@ -293,12 +297,12 @@ void gamescreen::mill_output(int turnTracker)
 
 //checks if desired piece to be removed is applicable... then removes piece
 void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
-{
+{//FIXME:
     switch (turnTracker)
     {
         // if gray gets mill
         case 0 :
-            //if position = black piece. 'remove' piece
+            //if position = black piece, then remove piece
             if(pos->styleSheet() == "background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
             {
                 pos->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
@@ -318,6 +322,7 @@ void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
             {
                 cout << "removing piece..." << endl;
                 pos->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+                is_mill = false; // piece removed, turn mill status OFF.
             }
             else if( (pos->styleSheet() == "background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;") ||
                      (pos->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;"))
@@ -328,10 +333,18 @@ void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
     };
 }
 
+void gamescreen::fly_phase(QPushButton *pos, int turnTracker)
+{
+
+
+    string test;
+    cout << "***FLY PHASE***" << endl;
+    cout << "enter something: ";
+}
+
 // detect_mill will check for mill every time a  piece is placed.
 bool gamescreen::detect_mill(int pos)
 {
-
     switch (pos)
     {
     case 1:
@@ -467,12 +480,13 @@ bool gamescreen::detect_mill(int pos)
     case 10:
         if ( (ui->space1->styleSheet() == ui->space10->styleSheet()) && (ui->space10->styleSheet() == ui->space22->styleSheet()) &&
              ui->space1->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
-        {
+        {//FIXME: sometimes a mill happens when its not even possible
+
             mill_output(turnTracker);
             return true;
         }
-        else if ( (ui->space10->styleSheet() == ui->space11->styleSheet()) && (ui->space11->styleSheet() == ui->space12->styleSheet()) &&
-             ui->space10->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
+        else if ( (ui->space12->styleSheet() == ui->space11->styleSheet()) && (ui->space11->styleSheet() == ui->space10->styleSheet()) &&
+             ui->space12->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
             mill_output(turnTracker);
             return true;
@@ -583,7 +597,7 @@ bool gamescreen::detect_mill(int pos)
         }
     case 19:
         if ( (ui->space4->styleSheet() == ui->space11->styleSheet()) && (ui->space11->styleSheet() == ui->space19->styleSheet()) &&
-             ui->space10->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
+             ui->space4->styleSheet()!= "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
         {
             mill_output(turnTracker);
             return true;
@@ -675,7 +689,7 @@ void gamescreen::on_space1_clicked()
     PopulateVector(); //Populates vector of board spaces on first run through
 
     if(is_mill == true) // each click will first check if mill is present..
-    {//FIXME: IMPLEMENT remove_check() method
+    {
         remove_piece(turnTracker, ui->space1);
         changeturn(is_mill);
     }
@@ -695,6 +709,13 @@ void gamescreen::on_space1_clicked()
         {
             movePieces(1);
         }
+        // if no more pieces can be placed AND there are ONLY 3 pieces AND it's gray turn.
+        if( (p0_num_pieces == 0) && (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            cout << "entering gray fly_phase.....turnTracker = " << turnTracker << endl;
+            fly_phase(ui->space1, turnTracker);
+
+        }
     }
     else if (turnTracker == 1)//Black's Turn
     {
@@ -707,12 +728,17 @@ void gamescreen::on_space1_clicked()
             ui->p2_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(1); // check for mill
             changeturn(is_mill);
+
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(1);
         }
-
+        if( (p1_num_pieces == 0) && ( p1_pieces_on_board == 3)&& (is_mill == false) )
+        {
+            cout << "entering black fly_phase.....turnTracker = " << turnTracker << endl;
+            fly_phase(ui->space1, turnTracker);
+        }
     }
     else
     {

@@ -23,11 +23,11 @@ public:
 
     /*
      * turnTracker:         keeps track of who's turn it is
-     * p1_num_pieces:       keeps track of total allowed pieces for p1
-     * p2_num_pieces:       keeps track of total allowed pieces for p2
+     * p0_num_pieces:       keeps track of total allowed pieces for p1
+     * p1_num_pieces:       keeps track of total allowed pieces for p2
      * is_mill:             signals the program if there is a mill on board with T or F value.
-     * p1_pieces_on_board:  keeps track of current number of pieces on board for p1
-     * p2_pieces_on_board   keeps track of current number of pieces on board for p2
+     * p0_pieces_on_board:  keeps track of current number of pieces on board for p1
+     * p1_pieces_on_board   keeps track of current number of pieces on board for p2
      * globalChage          Used when moving a piece
      */
 
@@ -65,11 +65,10 @@ public:
     void IfChanged(QPushButton* button2);
 
     /*
-     * changeturn()... changes the turn
-     * parameter:   isMill -> if mill is present. dont change turns
+     *movePieces
+     *
+     *parameter:    place ->
      */
-    void changeturn(bool isMill);
-
     void movePieces(int place);
 
     void WhiteToBlue(QPushButton* button1);
@@ -80,8 +79,17 @@ public:
 
     void moveAPiece(int index);
 
-    /* chekcs for mill
+    /*
+     *fly_phase()
      *
+     *parameter:    pos-> object that points to which piece we want to FLY/move (based on next click)
+     *              turnTracker-> used in switch/case to see who gets to FLY/move
+     */
+    void fly_phase(QPushButton* pos,int turnTracker);
+//    bool fly_check();
+
+    /*
+     * detect_mill()
      * parameter: pos -> where a piece was just placed.
      *
      * Returns: TRUE if mill detected
@@ -89,14 +97,22 @@ public:
      */
     bool detect_mill(int pos);
 
-    //output when a mill happens
+    /*
+     * changeturn()... changes the turn
+     * parameter:   isMill -> if mill is present. dont change turns
+     */
+    void changeturn(bool isMill);
 
+    //output when a mill happens
     void mill_output(int turnTracker);
 
     /*
+     * remove_piece()
      * checks if its OK to remove a specific piece
+     *
+     * parameter:   turnTracker-> use in switch/case to see who gets to remove
+     *              pos-> object that points to which piece we want to remove (based on next click)
      */
-
     void remove_piece(int turnTracker, QPushButton* pos);
 
     /*

@@ -33,6 +33,7 @@ void gamescreen::changeturn(bool isMill)
 
 }
 
+//outputs specific mill message for whichever team got it.
 void gamescreen::mill_output(int turnTracker)
 {
     //if turnTracjer remainder == 0 output for gray team. 1 for black team

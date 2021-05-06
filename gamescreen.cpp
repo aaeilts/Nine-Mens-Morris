@@ -20,6 +20,10 @@ gamescreen::~gamescreen()
 {
     delete ui;
 }
+
+void gamesc
+
+
 //Changes turnTracker from 1 to 0 or 0 to 1
 void gamescreen::changeturn(bool isMill)
 {
@@ -33,7 +37,7 @@ void gamescreen::changeturn(bool isMill)
 
 }
 
-//outputs specific mill message for whichever team got it.
+//mill_output outputs specific mill message for whichever team got it.
 void gamescreen::mill_output(int turnTracker)
 {
     //if turnTracjer remainder == 0 output for gray team. 1 for black team
@@ -46,6 +50,7 @@ void gamescreen::mill_output(int turnTracker)
 
 }
 
+//checks if desired piece to be removed is applicable... then removes piece
 void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
 {
     switch (turnTracker)

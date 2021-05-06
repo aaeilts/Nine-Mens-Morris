@@ -45,26 +45,34 @@ void gamescreen::mill_output(int turnTracker)
 
 }
 
-void gamescreen::remove_piece(int turnTracker)
+void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
 {
     cout << "entered remove_piece() " << endl;
-    // if turnTracker == gray
     switch (turnTracker)
     {//FIXME
         case 0 :
-            if(ui->space1->styleSheet() == "background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;" )
+            if(pos->styleSheet() == "background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
             {
-                cout << "changing colors" << endl;
-                ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+                cout << "removing piece..." << endl;
+                pos->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
             }
-
-            else
+            else if( (pos->styleSheet() == "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;") ||
+                     (pos->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;"))
             {
                 cout << "incorrect choice try again" << endl;
             }
-
             break;
         case 1 :
+            if(pos->styleSheet() == "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
+            {
+                cout << "removing piece..." << endl;
+                pos->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+            }
+            else if( (pos->styleSheet() == "background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;") ||
+                     (pos->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;"))
+            {
+                cout << "incorrect choice try again" << endl;
+            }
             break;
 
     };
@@ -415,9 +423,9 @@ void gamescreen::on_space1_clicked()
 {
     if(is_mill == true) // each click will first check if mill is present..
     {//FIXME: IMPLEMENT remove_check() method
-        remove_piece(turnTracker);
+        remove_piece(turnTracker, ui->space1);
         cout << "outside remove_check()" << endl;
-        ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        //ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
         changeturn(is_mill);
     }
@@ -457,8 +465,11 @@ void gamescreen::on_space2_clicked()
 {
     if(is_mill == true)
     {
-        ui->space2->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space2);
+        cout << "outside remove_check()" << endl;
+        //ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's Turn
     {
@@ -494,8 +505,10 @@ void gamescreen::on_space3_clicked()
 {
     if(is_mill == true)
     {
-        ui->space3->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space3);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) // Gray's turn
     {
@@ -532,8 +545,10 @@ void gamescreen::on_space4_clicked()
 {
     if(is_mill == true)
     {
-        ui->space4->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space4);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's Turn
     {
@@ -567,8 +582,10 @@ void gamescreen::on_space5_clicked()
 {
     if(is_mill == true)
     {
-        ui->space5->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space5);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) // Grays turn
     {
@@ -602,8 +619,10 @@ void gamescreen::on_space6_clicked()
 {
     if(is_mill == true)
     {
-        ui->space6->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space6);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
     {
@@ -637,8 +656,10 @@ void gamescreen::on_space7_clicked()
 {
     if(is_mill == true)
     {
-        ui->space7->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space7);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
     {
@@ -672,8 +693,10 @@ void gamescreen::on_space8_clicked()
 {
     if(is_mill == true)
     {
-        ui->space8->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space8);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0)//Grays Turn
     {
@@ -707,8 +730,10 @@ void gamescreen::on_space9_clicked()
 {
     if(is_mill == true)
     {
-        ui->space9->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space9);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
     {
@@ -742,8 +767,10 @@ void gamescreen::on_space10_clicked()
 {
     if(is_mill == true)
     {
-        ui->space10->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space10);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
     {
@@ -776,8 +803,10 @@ void gamescreen::on_space11_clicked()
 {
     if(is_mill == true)
     {
-        ui->space11->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space11);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) //Grays turn
     {
@@ -811,8 +840,10 @@ void gamescreen::on_space12_clicked()
 {
     if(is_mill == true)
     {
-        ui->space12->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space12);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
     {
@@ -846,8 +877,10 @@ void gamescreen::on_space13_clicked()
 {
     if(is_mill == true)
     {
-        ui->space13->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space13);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
     {
@@ -881,8 +914,10 @@ void gamescreen::on_space14_clicked()
 {
     if(is_mill == true)
     {
-        ui->space14->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space14);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
     {
@@ -916,8 +951,10 @@ void gamescreen::on_space15_clicked()
 {
     if(is_mill == true)
     {
-        ui->space15->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space15);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
     {
@@ -951,8 +988,10 @@ void gamescreen::on_space16_clicked()
 {
     if(is_mill == true)
     {
-        ui->space16->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space16);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
     {
@@ -986,8 +1025,10 @@ void gamescreen::on_space17_clicked()
 {
     if(is_mill == true)
     {
-        ui->space17->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space17);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
     {
@@ -1021,8 +1062,10 @@ void gamescreen::on_space18_clicked()
 {
     if(is_mill == true)
     {
-        ui->space18->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space18);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) // Gray's turn
     {
@@ -1056,8 +1099,10 @@ void gamescreen::on_space19_clicked()
 {
     if(is_mill == true)
     {
-        ui->space19->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space19);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0)//Gray's turn
     {
@@ -1091,8 +1136,10 @@ void gamescreen::on_space20_clicked()
 {
     if(is_mill == true)
     {
-        ui->space20->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space20);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) // Gray's turn
     {
@@ -1127,8 +1174,10 @@ void gamescreen::on_space21_clicked()
 {
     if(is_mill == true)
     {
-        ui->space21->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space21);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker  == 0) //Gray's turn
     {
@@ -1162,8 +1211,10 @@ void gamescreen::on_space22_clicked()
 {
     if(is_mill == true)
     {
-        ui->space22->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space22);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0)//Gray's turn
     {
@@ -1198,8 +1249,10 @@ void gamescreen::on_space23_clicked()
 {
     if(is_mill == true)
     {
-        ui->space23->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space23);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
     {
@@ -1233,8 +1286,10 @@ void gamescreen::on_space24_clicked()
 {
     if(is_mill == true)
     {
-        ui->space24->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        remove_piece(turnTracker, ui->space24);
+        cout << "outside remove_check()" << endl;
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
     {

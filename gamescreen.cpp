@@ -21,6 +21,15 @@ gamescreen::~gamescreen()
     delete ui;
 }
 
+void gamescreen::WhiteToBlue(QPushButton* button1){
+    if (button1->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;" )
+    {
+        button1->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        changed = true;
+        tempButtonHolder.append(button1);
+    }
+}
+
 //This function populates the declared vector "adjacents" with the adjacent angles of the index+1 space
 void gamescreen::PopulateVector(){
     if (createvector == 0)
@@ -64,6 +73,19 @@ void gamescreen::movePieces(int place){
 
 }
 
+void gamescreen::CheckPhaseTwo(QPushButton* button){
+    if (button->styleSheet() == "background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
+}
+
+void gamescreen::IfChanged(QPushButton* button2){
+    if (changed)
+    {
+        button2->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+        secondPhase = true;
+        move_from.push_back(button2);
+    }
+}
+
 void gamescreen::phaseTwo(int place){
     if (tempButtonHolder.contains(buttons[place-1])) //If the button pressed was in our temp (adjacent) button list
     {
@@ -87,537 +109,147 @@ void gamescreen::phaseTwo(int place){
 //void gamescreen::moveAPiece(int index){}
 
 void gamescreen::ChangeAdjacentEmpty(int switchCase){
-    bool changed = false;
     switch(switchCase){
     case 1:
-        if (ui->space2->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space2->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            //ui->space2->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space2);
-        }
-        if (ui->space10->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space10->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space10);
-        }
-        if (changed) //If neither of cases above change theres no free space
-        {
-            ui->space1->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            secondPhase = true;
-        }
+        WhiteToBlue(ui->space2);
+        WhiteToBlue(ui->space10);
+        IfChanged(ui->space1);
         break;
     case 2:
-        if (ui->space1->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space1->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space1);
-        }
-        if (ui->space3->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space3->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space3);
-        }
-        if (ui->space5->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space5->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space5);
-        }
-        if (changed)
-        {
-            ui->space1->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space1);
+        WhiteToBlue(ui->space3);
+        WhiteToBlue(ui->space5);
+        IfChanged(ui->space2);
         break;
     case 3:
-        if (ui->space2->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space2->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space2);
-        }
-        if (ui->space15->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space15->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space15);
-        }
-        if (changed)
-        {
-            ui->space3->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space2);
+        WhiteToBlue(ui->space15);
+        IfChanged(ui->space3);
         break;
     case 4:
-        if (ui->space5->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space5->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space5);
-        }
-        if (ui->space11->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space11->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space11);
-        }
+        WhiteToBlue(ui->space5);
+        WhiteToBlue(ui->space11);
+        IfChanged(ui->space4);
         if (changed)
         {
             ui->space4->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+            secondPhase = true;
         }
         break;
     case 5:
-        if (ui->space2->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space2->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space2);
-        }
-        if (ui->space4->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space4->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space4);
-        }
-        if (ui->space6->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space6->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space6);
-        }
-        if (ui->space8->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space8->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space8);
-        }
-        if (changed)
-        {
-            ui->space5->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space2);
+        WhiteToBlue(ui->space4);
+        WhiteToBlue(ui->space6);
+        WhiteToBlue(ui->space8);
+        IfChanged(ui->space5);
         break;
     case 6:
-        if (ui->space5->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space5->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space5);
-        }
-        if (ui->space14->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space14->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space14);
-        }
-        if (changed)
-        {
-            ui->space6->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space5);
+        WhiteToBlue(ui->space14);
+        IfChanged(ui->space6);
         break;
     case 7:
-        if (ui->space8->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space8->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space8);
-        }
-        if (ui->space12->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space12->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space12);
-        }
-        if (changed)
-        {
-            ui->space7->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space8);
+        WhiteToBlue(ui->space12);
+        IfChanged(ui->space7);
         break;
     case 8:
-        if (ui->space5->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space5->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space5);
-        }
-        if (ui->space7->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space7->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space7);
-        }
-        if (ui->space9->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space9->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space9);
-        }
-        if (changed)
-        {
-            ui->space8->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space5);
+        WhiteToBlue(ui->space7);
+        WhiteToBlue(ui->space9);
+        IfChanged(ui->space8);
         break;
     case 9:
-        if (ui->space8->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space8->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space8);
-        }
-        if (ui->space13->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space13->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space13);
-        }
-        if (changed)
-        {
-            ui->space9->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space8);
+        WhiteToBlue(ui->space13);
+        IfChanged(ui->space9);
         break;
     case 10:
-        if (ui->space1->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space1->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space1);
-        }
-        if (ui->space11->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space11->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space11);
-        }
-        if (ui->space22->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space22->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space22);
-        }
-        if (changed)
-        {
-            ui->space10->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space1);
+        WhiteToBlue(ui->space11);
+        WhiteToBlue(ui->space22);
+        IfChanged(ui->space10);
         break;
     case 11:
-        if (ui->space4->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space4->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space4);
-        }
-        if (ui->space10->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space10->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space10);
-        }
-        if (ui->space12->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space12->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space12);
-        }
-        if (ui->space19->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space19->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space19);
-        }
-        if (changed)
-        {
-            ui->space11->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space4);
+        WhiteToBlue(ui->space10);
+        WhiteToBlue(ui->space12);
+        WhiteToBlue(ui->space19);
+        IfChanged(ui->space11);
         break;
     case 12:
-        if (ui->space7->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space7->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space7);
-        }
-        if (ui->space11->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space11->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space11);
-        }
-        if (ui->space16->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space16->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space16);
-        }
-        if (changed)
-        {
-            ui->space12->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space7);
+        WhiteToBlue(ui->space11);
+        WhiteToBlue(ui->space16);
+        IfChanged(ui->space12);
         break;
     case 13:
-        if (ui->space9->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space9->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space9);
-        }
-        if (ui->space14->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space14->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space14);
-        }
-        if (ui->space18->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space18->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space18);
-        }
-        if (changed)
-        {
-            ui->space13->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space9);
+        WhiteToBlue(ui->space14);
+        WhiteToBlue(ui->space18);
+        IfChanged(ui->space13);
         break;
     case 14:
-        if (ui->space6->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space6->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space6);
-        }
-        if (ui->space13->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space13->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space13);
-        }
-        if (ui->space15->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space15->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space15);
-        }
-        if (ui->space21->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space21->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space21);
-        }
-        if (changed)
-        {
-            ui->space14->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space6);
+        WhiteToBlue(ui->space13);
+        WhiteToBlue(ui->space15);
+        WhiteToBlue(ui->space21);
+        IfChanged(ui->space14);
         break;
     case 15:
-        if (ui->space3->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space3->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space3);
-        }
-        if (ui->space14->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space14->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space14);
-        }
-        if (ui->space24->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space24->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space24);
-        }
-        if (changed)
-        {
-            ui->space15->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space3);
+        WhiteToBlue(ui->space14);
+        WhiteToBlue(ui->space24);
+        IfChanged(ui->space15);
         break;
     case 16:
-        if (ui->space12->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space12->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space12);
-        }
-        if (ui->space17->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space17->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space17);
-        }
-        if (changed)
-        {
-            ui->space16->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space12);
+        WhiteToBlue(ui->space17);
+        IfChanged(ui->space16);
         break;
     case 17:
-        if (ui->space16->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space16->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space16);
-        }
-        if (ui->space18->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space18->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space18);
-        }
-        if (ui->space20->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space20->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space20);
-        }
-        if (changed)
-        {
-            ui->space17->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space16);
+        WhiteToBlue(ui->space18);
+        WhiteToBlue(ui->space20);
+        IfChanged(ui->space17);
         break;
     case 18:
-        if (ui->space13->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space13->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space13);
-        }
-        if (ui->space17->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space17->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space17);
-        }
-        if (changed)
-        {
-            ui->space18->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space13);
+        WhiteToBlue(ui->space17);
+        IfChanged(ui->space18);
         break;
     case 19:
-        if (ui->space11->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space11->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space11);
-        }
-        if (ui->space20->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space20->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space20);
-        }
-        if (changed)
-        {
-            ui->space19->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space11);
+        WhiteToBlue(ui->space20);
+        IfChanged(ui->space19);
         break;
     case 20:
-        if (ui->space17->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space17->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space17);
-        }
-        if (ui->space19->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space19->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space19);
-        }
-        if (ui->space21->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space21->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space21);
-        }
-        if (ui->space23->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space23->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space23);
-        }
-        if (changed)
-        {
-            ui->space20->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space17);
+        WhiteToBlue(ui->space19);
+        WhiteToBlue(ui->space21);
+        WhiteToBlue(ui->space23);
+        IfChanged(ui->space20);
         break;
     case 21:
-        if (ui->space14->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space14->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space14);
-        }
-        if (ui->space20->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space20->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space20);
-        }
-        if (changed)
-        {
-            ui->space21->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space14);
+        WhiteToBlue(ui->space20);
+        IfChanged(ui->space21);
         break;
     case 22:
-        if (ui->space10->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space10->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space10);
-        }
-        if (ui->space23->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space23->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space23);
-        }
-        if (changed)
-        {
-            ui->space22->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space10);
+        WhiteToBlue(ui->space23);
+        IfChanged(ui->space22);
         break;
     case 23:
-        if (ui->space20->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space20->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space20);
-        }
-        if (ui->space22->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space22->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space22);
-        }
-        if (ui->space24->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space24->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space24);
-        }
-        if (changed)
-        {
-            ui->space23->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space20);
+        WhiteToBlue(ui->space22);
+        WhiteToBlue(ui->space24);
+        IfChanged(ui->space23);
         break;
     case 24:
-        if (ui->space15->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space15->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space15);
-        }
-        if (ui->space23->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-        {
-            ui->space23->setStyleSheet("background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-            changed = true;
-            tempButtonHolder.append(ui->space23);
-        }
-        if (changed)
-        {
-            ui->space24->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
-        }
+        WhiteToBlue(ui->space15);
+        WhiteToBlue(ui->space23);
+        IfChanged(ui->space24);
         break;
     }
 }
@@ -1075,7 +707,6 @@ void gamescreen::on_space1_clicked()
         }
         else if ((p0_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
-            cout << "Entering phase 2" << endl;
             movePieces(1);
         }
         // if no more pieces can be placed AND there are ONLY 3 pieces AND it's gray turn.
@@ -1101,7 +732,6 @@ void gamescreen::on_space1_clicked()
         }
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
-            cout << "Entering phase 2" << endl;
             movePieces(1);
         }
         if( (p1_num_pieces == 0) && ( p1_pieces_on_board == 3)&& (is_mill == false) )

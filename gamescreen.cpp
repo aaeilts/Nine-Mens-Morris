@@ -73,9 +73,9 @@ void gamescreen::movePieces(int place){
 
 }
 
-void gamescreen::CheckPhaseTwo(QPushButton* button){
-    if (button->styleSheet() == "background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-}
+//void gamescreen::CheckPhaseTwo(QPushButton* button){
+//    if (button->styleSheet() == "background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
+//}
 
 void gamescreen::IfChanged(QPushButton* button2){
     if (changed)
@@ -335,11 +335,10 @@ void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
 
 void gamescreen::fly_phase(QPushButton *pos, int turnTracker)
 {
-
-
-    string test;
     cout << "***FLY PHASE***" << endl;
-    cout << "enter something: ";
+
+
+
 }
 
 // detect_mill will check for mill every time a  piece is placed.
@@ -710,11 +709,9 @@ void gamescreen::on_space1_clicked()
             movePieces(1);
         }
         // if no more pieces can be placed AND there are ONLY 3 pieces AND it's gray turn.
-        if( (p0_num_pieces == 0) && (p0_pieces_on_board == 3) && (is_mill == false) )
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
         {
-            cout << "entering gray fly_phase.....turnTracker = " << turnTracker << endl;
             fly_phase(ui->space1, turnTracker);
-
         }
     }
     else if (turnTracker == 1)//Black's Turn
@@ -736,7 +733,6 @@ void gamescreen::on_space1_clicked()
         }
         if( (p1_num_pieces == 0) && ( p1_pieces_on_board == 3)&& (is_mill == false) )
         {
-            cout << "entering black fly_phase.....turnTracker = " << turnTracker << endl;
             fly_phase(ui->space1, turnTracker);
         }
     }
@@ -770,6 +766,11 @@ void gamescreen::on_space2_clicked()
         {
             movePieces(2);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space2, turnTracker);
+        }
+
     }
     else if (turnTracker == 1) //Black's Turn
     {
@@ -786,6 +787,10 @@ void gamescreen::on_space2_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(2);
+        }
+        if( (p1_num_pieces == 0) && ( p1_pieces_on_board == 3)&& (is_mill == false) )
+        {
+            fly_phase(ui->space2, turnTracker);
         }
     }
     else
@@ -818,6 +823,10 @@ void gamescreen::on_space3_clicked()
         {
             movePieces(3);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space3, turnTracker);
+        }
     }
     else if (turnTracker == 1) // Black's turn
     {
@@ -834,6 +843,11 @@ void gamescreen::on_space3_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(3);
+        }
+        if( (p1_num_pieces == 0) && ( p1_pieces_on_board == 3)&& (is_mill == false) )
+        {
+            cout << "entering black fly_phase.....turnTracker = " << turnTracker << endl;
+            fly_phase(ui->space1, turnTracker);
         }
 
     }
@@ -866,6 +880,10 @@ void gamescreen::on_space4_clicked()
         {
             movePieces(4);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space4, turnTracker);
+        }
     }
     else if (turnTracker == 1) // Black's turn
     {
@@ -881,6 +899,11 @@ void gamescreen::on_space4_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(4);
+        }
+        if( (p1_num_pieces == 0) && ( p1_pieces_on_board == 3)&& (is_mill == false) )
+        {
+            cout << "entering black fly_phase.....turnTracker = " << turnTracker << endl;
+            fly_phase(ui->space4, turnTracker);
         }
     }
     else
@@ -912,6 +935,10 @@ void gamescreen::on_space5_clicked()
         {
             movePieces(5);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space5, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -927,6 +954,10 @@ void gamescreen::on_space5_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(5);
+        }
+        if( (p1_num_pieces == 0) && ( p1_pieces_on_board == 3)&& (is_mill == false) )
+        {
+            fly_phase(ui->space5, turnTracker);
         }
     }
     else
@@ -958,6 +989,10 @@ void gamescreen::on_space6_clicked()
         {
             movePieces(6);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space6, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -973,6 +1008,10 @@ void gamescreen::on_space6_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(6);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space6, turnTracker);
         }
     }
     else
@@ -1004,6 +1043,10 @@ void gamescreen::on_space7_clicked()
         {
             movePieces(7);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space7, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's Turn
     {
@@ -1019,6 +1062,10 @@ void gamescreen::on_space7_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(7);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space7, turnTracker);
         }
     }
     else
@@ -1050,6 +1097,10 @@ void gamescreen::on_space8_clicked()
         {
             movePieces(8);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space8, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Blacks turn
     {
@@ -1065,6 +1116,10 @@ void gamescreen::on_space8_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(8);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space8, turnTracker);
         }
     }
     else
@@ -1096,6 +1151,10 @@ void gamescreen::on_space9_clicked()
         {
             movePieces(9);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space9, turnTracker);
+        }
     }
     else if (turnTracker == 1) // Black's turn
     {
@@ -1111,6 +1170,10 @@ void gamescreen::on_space9_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(9);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space8, turnTracker);
         }
     }
     else
@@ -1142,6 +1205,10 @@ void gamescreen::on_space10_clicked()
         {
             movePieces(10);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space10, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -1157,6 +1224,10 @@ void gamescreen::on_space10_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(10);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space10, turnTracker);
         }
     }
     else
@@ -1188,6 +1259,10 @@ void gamescreen::on_space11_clicked()
         {
             movePieces(11);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space11, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -1203,6 +1278,10 @@ void gamescreen::on_space11_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(11);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space11, turnTracker);
         }
     }
     else
@@ -1234,6 +1313,10 @@ void gamescreen::on_space12_clicked()
         {
             movePieces(1);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space12, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -1249,6 +1332,10 @@ void gamescreen::on_space12_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(1);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space12, turnTracker);
         }
     }
     else
@@ -1280,6 +1367,10 @@ void gamescreen::on_space13_clicked()
         {
             movePieces(13);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space13, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -1295,6 +1386,10 @@ void gamescreen::on_space13_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(13);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space13, turnTracker);
         }
     }
     else
@@ -1326,6 +1421,10 @@ void gamescreen::on_space14_clicked()
         {
             movePieces(14);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space14, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -1341,6 +1440,10 @@ void gamescreen::on_space14_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(14);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space14, turnTracker);
         }
     }
     else
@@ -1372,6 +1475,10 @@ void gamescreen::on_space15_clicked()
         {
             movePieces(15);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space15, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -1387,6 +1494,10 @@ void gamescreen::on_space15_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(15);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space15, turnTracker);
         }
     }
     else
@@ -1418,6 +1529,10 @@ void gamescreen::on_space16_clicked()
         {
             movePieces(16);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space16, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -1433,6 +1548,10 @@ void gamescreen::on_space16_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(16);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space16, turnTracker);
         }
     }
     else
@@ -1464,6 +1583,10 @@ void gamescreen::on_space17_clicked()
         {
             movePieces(17);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space17, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -1479,6 +1602,10 @@ void gamescreen::on_space17_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(17);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space17, turnTracker);
         }
     }
     else
@@ -1510,6 +1637,10 @@ void gamescreen::on_space18_clicked()
         {
             movePieces(18);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space18, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -1525,6 +1656,10 @@ void gamescreen::on_space18_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(18);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space18, turnTracker);
         }
     }
     else
@@ -1556,6 +1691,10 @@ void gamescreen::on_space19_clicked()
         {
             movePieces(19);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space19, turnTracker);
+        }
     }
     else if (turnTracker == 1) // Black's turn
     {
@@ -1571,6 +1710,10 @@ void gamescreen::on_space19_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(19);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space19, turnTracker);
         }
     }
     else
@@ -1603,6 +1746,10 @@ void gamescreen::on_space20_clicked()
         {
             movePieces(20);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space20, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -1618,6 +1765,10 @@ void gamescreen::on_space20_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(20);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space20, turnTracker);
         }
     }
     else
@@ -1649,6 +1800,10 @@ void gamescreen::on_space21_clicked()
         {
             movePieces(21);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space21, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -1664,6 +1819,10 @@ void gamescreen::on_space21_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(21);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space21, turnTracker);
         }
     }
     else
@@ -1695,6 +1854,10 @@ void gamescreen::on_space22_clicked()
         {
             movePieces(22);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space22, turnTracker);
+        }
 
     }
     else if (turnTracker == 1) //Black's turn
@@ -1711,6 +1874,10 @@ void gamescreen::on_space22_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(22);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space22, turnTracker);
         }
     }
     else
@@ -1742,6 +1909,10 @@ void gamescreen::on_space23_clicked()
         {
             movePieces(23);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space23, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -1757,6 +1928,10 @@ void gamescreen::on_space23_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(23);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space23, turnTracker);
         }
     }
     else
@@ -1788,6 +1963,10 @@ void gamescreen::on_space24_clicked()
         {
             movePieces(24);
         }
+        if( (p0_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space24, turnTracker);
+        }
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -1803,6 +1982,10 @@ void gamescreen::on_space24_clicked()
         else if ((p1_pieces_on_board > 3) && (p0_num_pieces == 0)) //Move piece phase. If the button is blue, it changes immediately when clicked to turn players color.
         {
             movePieces(24);
+        }
+        if( (p1_pieces_on_board == 3) && (is_mill == false) )
+        {
+            fly_phase(ui->space24, turnTracker);
         }
     }
     else

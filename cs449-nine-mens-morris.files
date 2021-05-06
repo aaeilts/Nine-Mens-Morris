@@ -1,0 +1,13 @@
+Nine-Mens-Morris.pro
+black50.png
+board.png
+board.qrc
+gamescreen.cpp
+gamescreen.h
+gamescreen.ui
+main.cpp
+pieceblack.qrc
+titlescreen.cpp
+titlescreen.h
+titlescreen.ui
+white50.png

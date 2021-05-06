@@ -23,11 +23,11 @@ public:
 
     /*
      * turnTracker:         keeps track of who's turn it is
-     * p1_num_pieces:       keeps track of total allowed pieces for p1
-     * p2_num_pieces:       keeps track of total allowed pieces for p2
+     * p0_num_pieces:       keeps track of total allowed pieces for p1
+     * p1_num_pieces:       keeps track of total allowed pieces for p2
      * is_mill:             signals the program if there is a mill on board with T or F value.
-     * p1_pieces_on_board:  keeps track of current number of pieces on board for p1
-     * p2_pieces_on_board   keeps track of current number of pieces on board for p2
+     * p0_pieces_on_board:  keeps track of current number of pieces on board for p1
+     * p1_pieces_on_board   keeps track of current number of pieces on board for p2
      * globalChage          Used when moving a piece
      */
 
@@ -37,6 +37,7 @@ public:
     bool is_mill = false;
     int p0_pieces_on_board = 0;
     int p1_pieces_on_board = 0;
+
     QVector<QString> styleMemory;
     QVector<QPushButton*> buttons;
     QVector<QPushButton*> tempButtonHolder;

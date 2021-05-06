@@ -37,17 +37,16 @@ void gamescreen::mill_output(int turnTracker)
 {
     //if turnTracjer remainder == 0 output for gray team. 1 for black team
     if ((turnTracker % 2) == 0) {
-        cout << "\nGray Team scored a mill! Remove a Black Team's piece" << endl;
+        cout << "\n***Gray Team scored a mill! Remove a Black Team's piece***" << endl;
     }
     else if ((turnTracker % 2) == 1) {
-        cout << "\nBlack Team scored a mill! Remove a Gray Team's piece" << endl;
+        cout << "\n***Black Team scored a mill! Remove a Gray Team's piece***" << endl;
     }
 
 }
 
 void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
 {
-    cout << "entered remove_piece() " << endl;
     switch (turnTracker)
     {
         // if gray gets mill
@@ -56,6 +55,8 @@ void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
             if(pos->styleSheet() == "background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
             {
                 pos->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+                cout << "*** removing piece ***" << endl;
+                is_mill = false; // piece removed, turn mill status OFF.
             }
             //else if position is gray OR white, pick a different piece
             else if( (pos->styleSheet() == "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;") ||
@@ -83,6 +84,7 @@ void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
 // detect_mill will check for mill every time a  piece is placed.
 bool gamescreen::detect_mill(int pos)
 {
+
     switch (pos)
     {
     case 1:
@@ -426,8 +428,6 @@ void gamescreen::on_space1_clicked()
     if(is_mill == true) // each click will first check if mill is present..
     {//FIXME: IMPLEMENT remove_check() method
         remove_piece(turnTracker, ui->space1);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0)//Gray's Turn
@@ -467,8 +467,6 @@ void gamescreen::on_space2_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space2);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's Turn
@@ -506,8 +504,6 @@ void gamescreen::on_space3_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space3);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) // Gray's turn
@@ -546,8 +542,6 @@ void gamescreen::on_space4_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space4);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's Turn
@@ -583,8 +577,6 @@ void gamescreen::on_space5_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space5);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) // Grays turn
@@ -620,8 +612,6 @@ void gamescreen::on_space6_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space6);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
@@ -657,8 +647,6 @@ void gamescreen::on_space7_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space7);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
@@ -694,8 +682,6 @@ void gamescreen::on_space8_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space8);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0)//Grays Turn
@@ -731,8 +717,6 @@ void gamescreen::on_space9_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space9);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
@@ -768,8 +752,6 @@ void gamescreen::on_space10_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space10);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
@@ -806,8 +788,6 @@ void gamescreen::on_space11_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space11);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) //Grays turn
@@ -843,8 +823,6 @@ void gamescreen::on_space12_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space12);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
@@ -880,8 +858,6 @@ void gamescreen::on_space13_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space13);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
@@ -917,8 +893,6 @@ void gamescreen::on_space14_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space14);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
@@ -954,8 +928,6 @@ void gamescreen::on_space15_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space15);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
@@ -991,8 +963,6 @@ void gamescreen::on_space16_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space16);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
@@ -1028,8 +998,6 @@ void gamescreen::on_space17_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space17);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
@@ -1065,8 +1033,6 @@ void gamescreen::on_space18_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space18);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) // Gray's turn
@@ -1102,8 +1068,6 @@ void gamescreen::on_space19_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space19);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0)//Gray's turn
@@ -1139,8 +1103,6 @@ void gamescreen::on_space20_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space20);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) // Gray's turn
@@ -1177,8 +1139,6 @@ void gamescreen::on_space21_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space21);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker  == 0) //Gray's turn
@@ -1214,8 +1174,6 @@ void gamescreen::on_space22_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space22);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0)//Gray's turn
@@ -1252,8 +1210,6 @@ void gamescreen::on_space23_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space23);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn
@@ -1289,8 +1245,6 @@ void gamescreen::on_space24_clicked()
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space24);
-        cout << "outside remove_check()" << endl;
-        is_mill = false;
         changeturn(is_mill);
     }
     else if (turnTracker == 0) //Gray's turn

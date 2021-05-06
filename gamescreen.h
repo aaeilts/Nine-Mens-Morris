@@ -52,7 +52,9 @@ public:
     //output when a mill happens
     void mill_output(int turnTracker);
 
-    //checks if its OK to remove a specific piece
+    /*
+     * checks if its OK to remove a specific piece
+     */
     //FIXME: FIGURE OUT HOW TO IMPLEMENT THIS METHOD
     void remove_piece(int turnTracker, QPushButton* pos);
 

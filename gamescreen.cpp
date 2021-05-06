@@ -21,10 +21,16 @@ gamescreen::~gamescreen()
     delete ui;
 }
 //Changes turnTracker from 1 to 0 or 0 to 1
-void gamescreen::changeturn()
+void gamescreen::changeturn(bool isMill)
 {
-    turnTracker += 1;
-    turnTracker = turnTracker % 2;
+    if (isMill){
+        turnTracker += 0;
+    }
+    else {
+        turnTracker += 1;
+        turnTracker = turnTracker % 2;
+    }
+
 }
 
 void gamescreen::mill_output(int turnTracker)
@@ -39,20 +45,29 @@ void gamescreen::mill_output(int turnTracker)
 
 }
 
-bool gamescreen::remove_check(QPushButton* pos)
+void gamescreen::remove_piece(int turnTracker)
 {
-    cout << "entered remove_check() " << endl;
+    cout << "entered remove_piece() " << endl;
+    // if turnTracker == gray
+    switch (turnTracker)
+    {//FIXME
+        case 0 :
+            if(ui->space1->styleSheet() == "background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;" )
+            {
+                cout << "changing colors" << endl;
+                ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+            }
 
-    do {
-        if(pos->styleSheet() != ("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;"))
-        {
-            cout << "test completed" << endl;
+            else
+            {
+                cout << "incorrect choice try again" << endl;
+            }
+
             break;
-        }
-    } while (true);
+        case 1 :
+            break;
 
-
-    return false;
+    };
 }
 
 // detect_mill will check for mill every time a  piece is placed.
@@ -400,32 +415,37 @@ void gamescreen::on_space1_clicked()
 {
     if(is_mill == true) // each click will first check if mill is present..
     {//FIXME: IMPLEMENT remove_check() method
-        removabe = remove_check(ui->space1);
-        cout << "just outside remove_checkl();" << endl;
+        remove_piece(turnTracker);
+        cout << "outside remove_check()" << endl;
         ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0)//Gray's Turn
     {
+
         if (p1_num_pieces > 0) //will Set a piece gray if have pieces left to place
         {
             ui->space1->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(1); // check for mill
-            changeturn();
+            changeturn(is_mill);
         }
+
     }
     else if (turnTracker == 1)//Black's Turn
     {
+
         if (p2_num_pieces > 0) //will set a piece black if have pieces left to place
         {
             ui->space1->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(1); // check for mill
-            changeturn();
+            changeturn(is_mill);
         }
+
     }
     else
     {
@@ -442,24 +462,26 @@ void gamescreen::on_space2_clicked()
     }
     else if (turnTracker == 0) //Gray's Turn
     {
+
         if (p1_num_pieces > 0) //Place gray piece if pieces left
         {
             ui->space2->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(2);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's Turn
     {
+
         if (p2_num_pieces > 0) //Place black piece if pieces left
         {
             ui->space2->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(2);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -477,25 +499,28 @@ void gamescreen::on_space3_clicked()
     }
     else if (turnTracker == 0) // Gray's turn
     {
+
         if (p1_num_pieces > 0) // Place a gray piece if pieces left
         {
             ui->space3->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(3);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) // Black's turn
     {
+
         if (p2_num_pieces > 0) // Place black piece if pieces left
         {
             ui->space3->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(3);
-            changeturn();
+            changeturn(is_mill);
         }
+
     }
     else
     {
@@ -518,7 +543,7 @@ void gamescreen::on_space4_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(4);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) // Black's turn
@@ -529,7 +554,7 @@ void gamescreen::on_space4_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(4);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -553,7 +578,7 @@ void gamescreen::on_space5_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(5);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -564,7 +589,7 @@ void gamescreen::on_space5_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(5);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -588,7 +613,7 @@ void gamescreen::on_space6_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(6);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -599,7 +624,7 @@ void gamescreen::on_space6_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(6);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -623,7 +648,7 @@ void gamescreen::on_space7_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(7);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's Turn
@@ -634,7 +659,7 @@ void gamescreen::on_space7_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(7);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -658,7 +683,7 @@ void gamescreen::on_space8_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(8);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Blacks turn
@@ -669,7 +694,7 @@ void gamescreen::on_space8_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(8);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -693,7 +718,7 @@ void gamescreen::on_space9_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(9);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) // Black's turn
@@ -704,7 +729,7 @@ void gamescreen::on_space9_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(9);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -728,7 +753,7 @@ void gamescreen::on_space10_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(10);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -739,8 +764,7 @@ void gamescreen::on_space10_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(10);
-            changeturn();
-        }
+            changeturn(is_mill);
     }
     else
     {
@@ -763,7 +787,7 @@ void gamescreen::on_space11_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(11);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -774,7 +798,7 @@ void gamescreen::on_space11_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(11);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -798,7 +822,7 @@ void gamescreen::on_space12_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(12);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -809,7 +833,7 @@ void gamescreen::on_space12_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(12);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -833,7 +857,7 @@ void gamescreen::on_space13_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(13);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -844,7 +868,7 @@ void gamescreen::on_space13_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(13);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -868,7 +892,7 @@ void gamescreen::on_space14_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(14);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -879,7 +903,7 @@ void gamescreen::on_space14_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(14);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -903,7 +927,7 @@ void gamescreen::on_space15_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(15);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -914,7 +938,7 @@ void gamescreen::on_space15_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(15);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -938,7 +962,7 @@ void gamescreen::on_space16_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(16);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -949,7 +973,7 @@ void gamescreen::on_space16_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(16);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -973,7 +997,7 @@ void gamescreen::on_space17_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(17);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -984,7 +1008,7 @@ void gamescreen::on_space17_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(17);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -1008,7 +1032,7 @@ void gamescreen::on_space18_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(18);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -1019,7 +1043,7 @@ void gamescreen::on_space18_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(18);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -1043,7 +1067,7 @@ void gamescreen::on_space19_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(19);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) // Black's turn
@@ -1054,7 +1078,7 @@ void gamescreen::on_space19_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(19);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -1072,13 +1096,14 @@ void gamescreen::on_space20_clicked()
     }
     else if (turnTracker == 0) // Gray's turn
     {
+
         if (p1_num_pieces > 0) // Place gray piece if available
         {
             ui->space20->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(20);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -1089,7 +1114,7 @@ void gamescreen::on_space20_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(20);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -1113,7 +1138,7 @@ void gamescreen::on_space21_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(21);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -1124,7 +1149,7 @@ void gamescreen::on_space21_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(21);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -1148,8 +1173,9 @@ void gamescreen::on_space22_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(22);
-            changeturn();
+            changeturn(is_mill);
         }
+
     }
     else if (turnTracker == 1) //Black's turn
     {
@@ -1159,7 +1185,7 @@ void gamescreen::on_space22_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(22);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -1183,7 +1209,7 @@ void gamescreen::on_space23_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(23);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -1194,7 +1220,7 @@ void gamescreen::on_space23_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(23);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else
@@ -1218,7 +1244,7 @@ void gamescreen::on_space24_clicked()
             p1_num_pieces--;
             ui->p1_pieces->setText(QString::number(p1_num_pieces));
             is_mill = detect_mill(24);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else if (turnTracker == 1) //Black's turn
@@ -1229,7 +1255,7 @@ void gamescreen::on_space24_clicked()
             p2_num_pieces--;
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(24);
-            changeturn();
+            changeturn(is_mill);
         }
     }
     else

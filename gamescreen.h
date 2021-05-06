@@ -30,11 +30,10 @@ public:
     int p2_num_pieces = 9;
     bool is_mill = false;
     bool removabe = false;
-    void changeturn();
+    void changeturn(bool isMill);
 
     ~gamescreen();
 
-private slots:
 
     /* chekcs for mill
      *
@@ -50,13 +49,16 @@ private slots:
 
     //checks if its OK to remove a specific piece
     //FIXME: FIGURE OUT HOW TO IMPLEMENT THIS METHOD
-    bool remove_check(QPushButton* pos);
+    void remove_piece(int turnTracker);
 
     /*
      * method(s) to place a piece. spaces1-24 go from left to right. top to bottom.
      * on_space_clicked() executes when a click happens
      *
      */
+
+private slots:
+
     void on_space1_clicked();
     void on_space2_clicked();
     void on_space3_clicked();

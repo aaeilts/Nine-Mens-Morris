@@ -44,8 +44,18 @@ void gamescreen::remove_check(int turnTracker)
     cout << "entered remove_check() " << endl;
     // if turnTracker == gray
     switch (turnTracker)
-    {
+    {//FIXME
         case 0 :
+            if(ui->space1->styleSheet() == "background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;" )
+            {
+                cout << "changing colors" << endl;
+                ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+            }
+            else
+            {
+                cout << "incorrect choice try again" << endl;
+            }
+
             break;
         case 1 :
             break;
@@ -399,7 +409,7 @@ void gamescreen::on_space1_clicked()
     if(is_mill == true) // each click will first check if mill is present..
     {//FIXME: IMPLEMENT remove_check() method
         remove_check(turnTracker);
-        cout << "just outside remove_checkl();" << endl;
+        cout << "outside remove_check()" << endl;
         ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
     }

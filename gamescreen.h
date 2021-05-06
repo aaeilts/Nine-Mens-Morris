@@ -33,10 +33,12 @@ public:
 
     int turnTracker = 0;
     int p0_num_pieces = 9;
-    int p2_num_pieces = 9;
+    int p1_num_pieces = 9;
     bool is_mill = false;
+    bool changed = false;
     int p0_pieces_on_board = 0;
     int p1_pieces_on_board = 0;
+    QVector<QPushButton*> move_from;
     QVector<QString> styleMemory;
     QVector<QPushButton*> buttons;
     QVector<QPushButton*> tempButtonHolder;
@@ -57,6 +59,11 @@ public:
      *
      */
     void PopulateVector();
+
+    void CheckPhaseTwo(QPushButton* button);
+
+    void IfChanged(QPushButton* button2);
+
     /*
      * changeturn()... changes the turn
      * parameter:   isMill -> if mill is present. dont change turns
@@ -64,6 +71,8 @@ public:
     void changeturn(bool isMill);
 
     void movePieces(int place);
+
+    void WhiteToBlue(QPushButton* button1);
 
     void phaseTwo(int place);
 

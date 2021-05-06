@@ -69,13 +69,40 @@ void gamescreen::movePieces(int place){
     else{
         ChangeAdjacentEmpty(place);
     }
-
-
 }
 
-//void gamescreen::CheckPhaseTwo(QPushButton* button){
-//    if (button->styleSheet() == "background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
-//}
+void gamescreen::CheckPhaseTwo(QPushButton* button){
+    if (button->styleSheet() == "background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
+    {
+        if (turnTracker == 0){
+            button->setStyleSheet("background-color: gray;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+            tempButtonHolder.removeOne(button);
+        }
+        else if (turnTracker == 1){
+            button->setStyleSheet("background-color: black;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+            tempButtonHolder.removeOne(button);
+        }
+        //DO NOT change turn here, taking move back
+    }
+    else if (button->styleSheet() == "background-color: blue;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;")
+    {
+        if (turnTracker == 0){
+            button->setStyleSheet("background-color: gray;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+            tempButtonHolder.removeOne(button);
+        }
+        else if (turnTracker == 1){
+            button->setStyleSheet("background-color: black;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+            tempButtonHolder.removeOne(button);
+        }
+        changeturn(true);
+    }
+    for (int i = 0; i < tempButtonHolder.size(); i++)
+    {
+        tempButtonHolder[i]->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
+
+    }
+}
+
 
 void gamescreen::IfChanged(QPushButton* button2){
     if (changed)
@@ -83,6 +110,7 @@ void gamescreen::IfChanged(QPushButton* button2){
         button2->setStyleSheet("background-color: cyan;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         secondPhase = true;
         move_from.push_back(button2);
+        tempButtonHolder.append(button2);
     }
 }
 
@@ -686,6 +714,7 @@ bool gamescreen::detect_mill(int pos)
 void gamescreen::on_space1_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space1);
 
     if(is_mill == true) // each click will first check if mill is present..
     {
@@ -745,6 +774,7 @@ void gamescreen::on_space1_clicked()
 void gamescreen::on_space2_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space2);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space2);
@@ -802,6 +832,7 @@ void gamescreen::on_space2_clicked()
 void gamescreen::on_space3_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space3);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space3);
@@ -860,6 +891,7 @@ void gamescreen::on_space3_clicked()
 void gamescreen::on_space4_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space4);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space4);
@@ -915,6 +947,7 @@ void gamescreen::on_space4_clicked()
 void gamescreen::on_space5_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space5);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space5);
@@ -969,6 +1002,7 @@ void gamescreen::on_space5_clicked()
 void gamescreen::on_space6_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space6);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space6);
@@ -1023,6 +1057,7 @@ void gamescreen::on_space6_clicked()
 void gamescreen::on_space7_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space7);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space7);
@@ -1077,6 +1112,7 @@ void gamescreen::on_space7_clicked()
 void gamescreen::on_space8_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space8);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space8);
@@ -1131,6 +1167,7 @@ void gamescreen::on_space8_clicked()
 void gamescreen::on_space9_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space9);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space9);
@@ -1185,6 +1222,7 @@ void gamescreen::on_space9_clicked()
 void gamescreen::on_space10_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space10);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space10);
@@ -1239,6 +1277,7 @@ void gamescreen::on_space10_clicked()
 void gamescreen::on_space11_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space11);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space11);
@@ -1293,6 +1332,7 @@ void gamescreen::on_space11_clicked()
 void gamescreen::on_space12_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space12);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space12);
@@ -1347,6 +1387,7 @@ void gamescreen::on_space12_clicked()
 void gamescreen::on_space13_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space13);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space13);
@@ -1401,6 +1442,7 @@ void gamescreen::on_space13_clicked()
 void gamescreen::on_space14_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space14);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space14);
@@ -1455,6 +1497,7 @@ void gamescreen::on_space14_clicked()
 void gamescreen::on_space15_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space15);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space15);
@@ -1509,6 +1552,7 @@ void gamescreen::on_space15_clicked()
 void gamescreen::on_space16_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space16);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space16);
@@ -1563,6 +1607,7 @@ void gamescreen::on_space16_clicked()
 void gamescreen::on_space17_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space17);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space17);
@@ -1617,6 +1662,7 @@ void gamescreen::on_space17_clicked()
 void gamescreen::on_space18_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space18);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space18);
@@ -1671,6 +1717,7 @@ void gamescreen::on_space18_clicked()
 void gamescreen::on_space19_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space19);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space19);
@@ -1725,6 +1772,7 @@ void gamescreen::on_space19_clicked()
 void gamescreen::on_space20_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space20);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space20);
@@ -1780,6 +1828,7 @@ void gamescreen::on_space20_clicked()
 void gamescreen::on_space21_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space21);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space21);
@@ -1834,6 +1883,7 @@ void gamescreen::on_space21_clicked()
 void gamescreen::on_space22_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space22);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space22);
@@ -1889,6 +1939,7 @@ void gamescreen::on_space22_clicked()
 void gamescreen::on_space23_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space23);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space23);
@@ -1943,6 +1994,7 @@ void gamescreen::on_space23_clicked()
 void gamescreen::on_space24_clicked()
 {
     PopulateVector(); //Populates vector of board spaces on first run through
+    CheckPhaseTwo(ui->space24);
     if(is_mill == true)
     {
         remove_piece(turnTracker, ui->space24);

@@ -21,10 +21,16 @@ gamescreen::~gamescreen()
     delete ui;
 }
 //Changes turnTracker from 1 to 0 or 0 to 1
-void gamescreen::changeturn()
+void gamescreen::changeturn(bool isMill)
 {
-    turnTracker += 1;
-    turnTracker = turnTracker % 2;
+    if (isMill){
+        turnTracker += 0;
+    }
+    else {
+        turnTracker += 1;
+        turnTracker = turnTracker % 2;
+    }
+
 }
 
 void gamescreen::mill_output(int turnTracker)
@@ -39,9 +45,9 @@ void gamescreen::mill_output(int turnTracker)
 
 }
 
-void gamescreen::remove_check(int turnTracker)
+void gamescreen::remove_piece(int turnTracker)
 {
-    cout << "entered remove_check() " << endl;
+    cout << "entered remove_piece() " << endl;
     // if turnTracker == gray
     switch (turnTracker)
     {//FIXME
@@ -51,6 +57,7 @@ void gamescreen::remove_check(int turnTracker)
                 cout << "changing colors" << endl;
                 ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
             }
+
             else
             {
                 cout << "incorrect choice try again" << endl;
@@ -408,22 +415,23 @@ void gamescreen::on_space1_clicked()
 {
     if(is_mill == true) // each click will first check if mill is present..
     {//FIXME: IMPLEMENT remove_check() method
-        remove_check(turnTracker);
+        remove_piece(turnTracker);
         cout << "outside remove_check()" << endl;
         ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
+        changeturn(is_mill);
     }
     else if (turnTracker == 0)//will SET A PIECE GRAY
     {
         ui->space1->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(1); // check for mill
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)//will SET A PIECE BLACK
     {
         ui->space1->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(1); // check for mill
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -442,13 +450,13 @@ void gamescreen::on_space2_clicked()
     {
         ui->space2->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(2);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space2->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(2);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -467,13 +475,13 @@ void gamescreen::on_space3_clicked()
     {
         ui->space3->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(3);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space3->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(3);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -492,13 +500,13 @@ void gamescreen::on_space4_clicked()
     {
         ui->space4->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(4);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space4->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(4);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -517,13 +525,13 @@ void gamescreen::on_space5_clicked()
     {
         ui->space5->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(5);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space5->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(5);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -542,13 +550,13 @@ void gamescreen::on_space6_clicked()
     {
         ui->space6->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(6);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space6->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(6);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -567,13 +575,13 @@ void gamescreen::on_space7_clicked()
     {
         ui->space7->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(7);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space7->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(7);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -592,13 +600,13 @@ void gamescreen::on_space8_clicked()
     {
         ui->space8->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(8);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space8->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(8);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -617,13 +625,13 @@ void gamescreen::on_space9_clicked()
     {
         ui->space9->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(9);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space9->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(9);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -642,13 +650,13 @@ void gamescreen::on_space10_clicked()
     {
         ui->space10->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(10);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space10->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(10);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -667,13 +675,13 @@ void gamescreen::on_space11_clicked()
     {
         ui->space11->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(11);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space11->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(11);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -692,13 +700,13 @@ void gamescreen::on_space12_clicked()
     {
         ui->space12->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(12);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space12->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(12);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -717,13 +725,13 @@ void gamescreen::on_space13_clicked()
     {
         ui->space13->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(13);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space13->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(13);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -742,13 +750,13 @@ void gamescreen::on_space14_clicked()
     {
         ui->space14->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(14);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space14->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(14);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -767,13 +775,13 @@ void gamescreen::on_space15_clicked()
     {
         ui->space15->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(15);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space15->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(15);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -792,13 +800,13 @@ void gamescreen::on_space16_clicked()
     {
         ui->space16->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(16);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space16->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(16);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -817,13 +825,13 @@ void gamescreen::on_space17_clicked()
     {
         ui->space17->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(17);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space17->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(17);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -842,13 +850,13 @@ void gamescreen::on_space18_clicked()
     {
         ui->space18->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(18);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space18->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(18);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -867,13 +875,13 @@ void gamescreen::on_space19_clicked()
     {
         ui->space19->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(19);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space19->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(19);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -892,13 +900,13 @@ void gamescreen::on_space20_clicked()
     {
         ui->space20->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(20);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space20->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(20);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -917,13 +925,13 @@ void gamescreen::on_space21_clicked()
     {
         ui->space21->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(21);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space21->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(21);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -942,13 +950,13 @@ void gamescreen::on_space22_clicked()
     {
         ui->space22->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(22);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space22->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(22);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -967,13 +975,13 @@ void gamescreen::on_space23_clicked()
     {
         ui->space23->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(23);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space23->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(23);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {
@@ -992,13 +1000,13 @@ void gamescreen::on_space24_clicked()
     {
         ui->space24->setStyleSheet("background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(24);
-        changeturn();
+        changeturn(is_mill);
     }
     else if (turnTracker == 1)
     {
         ui->space24->setStyleSheet("background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;");
         is_mill = detect_mill(24);
-        changeturn();
+        changeturn(is_mill);
     }
     else
     {

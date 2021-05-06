@@ -49,19 +49,22 @@ void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
 {
     cout << "entered remove_piece() " << endl;
     switch (turnTracker)
-    {//FIXME
+    {
+        // if gray gets mill
         case 0 :
+            //if position = black piece. 'remove' piece
             if(pos->styleSheet() == "background-color: black; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
             {
-                cout << "removing piece..." << endl;
                 pos->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
             }
+            //else if position is gray OR white, pick a different piece
             else if( (pos->styleSheet() == "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;") ||
                      (pos->styleSheet() == "background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;"))
             {
                 cout << "incorrect choice try again" << endl;
             }
             break;
+        //if black gets mill
         case 1 :
             if(pos->styleSheet() == "background-color: gray; border-style: solid; border-width: 1px; border-radius: 10px; border-color: black; max-width: 20px; max-height: 20px; min-width :20px; min-height: 20px;")
             {
@@ -74,7 +77,6 @@ void gamescreen::remove_piece(int turnTracker, QPushButton* pos)
                 cout << "incorrect choice try again" << endl;
             }
             break;
-
     };
 }
 
@@ -425,7 +427,6 @@ void gamescreen::on_space1_clicked()
     {//FIXME: IMPLEMENT remove_check() method
         remove_piece(turnTracker, ui->space1);
         cout << "outside remove_check()" << endl;
-        //ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
         changeturn(is_mill);
     }
@@ -467,7 +468,6 @@ void gamescreen::on_space2_clicked()
     {
         remove_piece(turnTracker, ui->space2);
         cout << "outside remove_check()" << endl;
-        //ui->space1->setStyleSheet("background-color: white;\n border-style: solid;\n border-width:1px;\n border-radius:10px;\n border-color: black;\n max-width:20px;\n max-height:20px;\n min-width:20px;\n min-height:20px;");
         is_mill = false;
         changeturn(is_mill);
     }
@@ -792,12 +792,14 @@ void gamescreen::on_space10_clicked()
             ui->p2_pieces->setText(QString::number(p2_num_pieces));
             is_mill = detect_mill(10);
             changeturn(is_mill);
+        }
     }
     else
     {
         turnTracker = turnTracker + 0;
     }
 }
+
 
 void gamescreen::on_space11_clicked()
 {

@@ -22,16 +22,21 @@ public:
     ~gamescreen();
 
     /*
-     *turnTracker:      keeps track of who's turn it is
-     *p1_num_pieces:    keeps track of total allowed pieces for p1
-     *p2_num_pieces:    keeps track of total allowed pieces for p2
-     *is_mill:          signals the program if there is a mill on board with T or F value.
+     * turnTracker:         keeps track of who's turn it is
+     * p1_num_pieces:       keeps track of total allowed pieces for p1
+     * p2_num_pieces:       keeps track of total allowed pieces for p2
+     * is_mill:             signals the program if there is a mill on board with T or F value.
+     * p1_pieces_on_board:  keeps track of current number of pieces on board for p1
+     * p2_pieces_on_board   keeps track of current number of pieces on board for p2
      */
 
     int turnTracker = 0;
     int p1_num_pieces = 9;
     int p2_num_pieces = 9;
     bool is_mill = false;
+    int p1_pieces_on_board = 0;
+    int p2_pieces_on_board = 0;
+
 
     /*
      *

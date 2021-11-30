@@ -107,7 +107,6 @@ public:
      * changeturn()... changes the turn
      * parameter:   isMill -> if mill is present. dont change turns
      */
-    void changeturn(bool isMill);
 
     //output when a mill happens
     void mill_output(int turnTracker);

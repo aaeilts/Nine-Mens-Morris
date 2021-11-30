@@ -23,7 +23,7 @@ gamescreen::~gamescreen()
 
 
 //gameend function
-void gamescreen::endgame(int p0_num_pieces, int p2_num_pieces, int p0_pieces_on_board, int p1_pieces_on_board){
+/*void gamescreen::endgame(int p0_num_pieces, int p2_num_pieces, int p0_pieces_on_board, int p1_pieces_on_board){
     //if all pieces have been places
     if (p0_num_pieces == 0 && p2_num_pieces == 0)
     {
@@ -37,8 +37,8 @@ void gamescreen::endgame(int p0_num_pieces, int p2_num_pieces, int p0_pieces_on_
         {
             QApplication::quit();
         }
-        /*player 1 no valid moves
-        else if ()
+        //player 1 no valid moves
+        //else if ()
         {
             QApplication::quit();
         }
